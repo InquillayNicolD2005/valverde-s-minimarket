@@ -12,6 +12,11 @@
 
 <div class="contenedor">
 
+<div class="announcement-bar">
+    <span>🚚 Entregas disponibles en tu zona</span>
+    <a href="promociones.html">Ver ofertas de la semana <b>→</b></a>
+</div>
+
 <!-- HEADER -->
 <header class="header">
     <div class="logo-contenedor">
@@ -31,6 +36,11 @@
 </a>
 </header>
 
+<div class="delivery-bar" aria-label="Información de entrega">
+    <button type="button" id="deliveryLocation"><span>📍</span><span><small>Entrega en</small><strong>Cusco</strong></span></button>
+    <button type="button" id="deliverySchedule"><span>🕘</span><span><small>Recibe hoy</small><strong>Desde 30 min</strong></span></button>
+</div>
+
 <!-- BANNER -->
 <section class="banner">
     <h1>Bienvenido a Minimarket Valverde´s</h1>
@@ -49,83 +59,92 @@
     </div>
 </section>
 
-<!-- 🔥 CARRUSEL SEMANAL -->
-<section class="seccion">
-<h3 class="titulo">Lo mejor de la semana</h3>
-
-<div class="carrusel-semana">
-
-<div class="slide activo">
-<img src="imagenes/ofertas/oferta6.png">
-<h2>Ofertas en Bebidas</h2>
+<!-- SELECCIÓN DESTACADA -->
+<section class="seccion featured-section">
+<div class="section-heading">
+    <div><span class="eyebrow">Nuestras recomendaciones</span><h3 class="titulo">Lo mejor de la semana</h3></div>
+    <a href="promociones.html">Ver todas las ofertas →</a>
 </div>
-
-<div class="slide">
-<img src="imagenes/ofertas/oferta7.png">
-<h2>Variedad de Snacks</h2>
-</div>
-
-<div class="slide">
-<img src="imagenes/ofertas/oferta8.png">
-<h2>Abarrotes en Promoción</h2>
-</div>
-
+<div class="featured-grid">
+    <a class="featured-card featured-card-large" href="categoria_bebidas.html">
+        <img src="imagenes/ofertas/oferta6.png" alt="Ofertas en bebidas">
+        <span class="featured-label">Hasta 20% OFF</span>
+        <div><strong>Refresca tu semana</strong><small>Promociones en bebidas</small></div>
+    </a>
+    <a class="featured-card" href="categoria_snacks.html">
+        <img src="imagenes/ofertas/oferta7.png" alt="Variedad de snacks">
+        <span class="featured-label">Para compartir</span>
+        <div><strong>Snacks favoritos</strong><small>Descubre novedades</small></div>
+    </a>
+    <a class="featured-card" href="categoria_abarrotes.html">
+        <img src="imagenes/ofertas/oferta8.png" alt="Abarrotes en promoción">
+        <span class="featured-label">Ahorra más</span>
+        <div><strong>Abarrotes esenciales</strong><small>Precios para tu despensa</small></div>
+    </a>
 </div>
 </section>
 
-
 <!-- CATEGORÍAS -->
 <section class="seccion">
-<h3 class="titulo">CATEGORÍAS</h3>
+<div class="section-heading">
+    <div><span class="eyebrow">Encuentra lo que necesitas</span><h3 class="titulo">Categorías</h3></div>
+</div>
+<div class="category-chips" aria-label="Filtros rápidos">
+    <button type="button" class="active" data-category="todos">Todos</button>
+    <button type="button" data-category="frescos">Frescos</button>
+    <button type="button" data-category="desayuno">Desayunos</button>
+    <button type="button" data-category="hogar">Hogar</button>
+    <button type="button" data-category="bebidas">Bebidas</button>
+</div>
 
 <div class="categorias">
 
-<a href="categoria_abarrotes.html" class="categoria">
+<a href="categoria_abarrotes.html" class="categoria" data-tags="desayuno hogar">
 <img src="imagenes/catalogo/abarrotes.png">
 <p>Abarrotes</p>
 </a>
 
-<a href="categoria_bebidas.html" class="categoria">
+<a href="categoria_bebidas.html" class="categoria" data-tags="bebidas desayuno">
 <img src="imagenes/catalogo/bebidas.png">
 <p>Bebidas</p>
 </a>
 
-<a href="categoria_licores.html" class="categoria">
+<a href="categoria_licores.html" class="categoria" data-tags="bebidas">
 <img src="imagenes/catalogo/licores.webp">
 <p>Licores</p>
 </a>
 
-<a href="categoria_lacteos.html" class="categoria">
+<a href="categoria_lacteos.html" class="categoria" data-tags="desayuno frescos">
 <img src="imagenes/catalogo/lacteos.png">
 <p>Lácteos</p>
 </a>
 
-<a href="categoria_snacks.html" class="categoria">
+<a href="categoria_snacks.html" class="categoria" data-tags="desayuno">
 <img src="imagenes/catalogo/snacks.webp">
 <p>Snacks</p>
 </a>
 
-<a href="categoria_frutas.html" class="categoria">
+<a href="categoria_frutas.html" class="categoria" data-tags="frescos">
 <img src="imagenes/catalogo/frutas_verduras.png">
 <p>Frutas y Verduras</p>
 </a>
 
-<a href="categoria_limpieza.html" class="categoria">
+<a href="categoria_limpieza.html" class="categoria" data-tags="hogar">
 <img src="imagenes/catalogo/limpieza_hogar.png">
 <p>Limpieza del hogar</p>
 </a>
 
-<a href="categoria_cuidado.html" class="categoria">
+<a href="categoria_cuidado.html" class="categoria" data-tags="hogar">
 <img src="imagenes/catalogo/cuidado_personal.png">
 <p>Cuidado Personal</p>
 </a>
 
-<a href="categoria_medicinas.html" class="categoria">
+<a href="categoria_medicinas.html" class="categoria" data-tags="hogar">
 <img src="imagenes/catalogo/medicinas.jpg">
 <p>Medicinas</p>
 </a>
 
-<a href="categoria_mascotas.html" class="categoria">
+<a href="categoria_mascotas.html" class="categoria" data-tags="hogar">
 <img src="imagenes/catalogo/alimento_mascotas.jpg">
 <p>Alimentos de Mascotas</p>
 </a>
@@ -525,6 +544,24 @@ function cerrarSesion(){
 
 // ejecutar
 verificarSesion();
+
+document.querySelectorAll(".category-chips button").forEach(button => {
+    button.addEventListener("click", () => {
+        document.querySelectorAll(".category-chips button").forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        const category = button.dataset.category;
+        document.querySelectorAll(".categorias .categoria").forEach(card => {
+            card.style.display = category === "todos" || (card.dataset.tags || "").includes(category) ? "flex" : "none";
+        });
+    });
+});
+
+document.getElementById("deliveryLocation")?.addEventListener("click", () => {
+    const location = window.prompt("¿Dónde quieres recibir tu pedido?", "Cusco");
+    if (location) {
+        document.querySelector("#deliveryLocation strong").textContent = location;
+    }
+});
 </script>
 
 </body>

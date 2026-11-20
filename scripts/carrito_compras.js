@@ -40,10 +40,15 @@ function agregarAlCarrito(nombre, precio, imagen){
 // 🔍 BUSCAR (INDEX)
 // =======================
 function buscar(){
-    let input = document.getElementById("buscadorInput").value.toLowerCase();
+    let input = document.getElementById("buscadorInput").value.toLowerCase().trim();
     let contenedor = document.getElementById("contenedorResultados");
 
     contenedor.innerHTML = "";
+
+    if (!input) {
+        limpiarBusqueda();
+        return;
+    }
 
     // ocultar todo
     document.querySelectorAll(".seccion, .banner").forEach(sec=>{
@@ -51,9 +56,19 @@ function buscar(){
         sec.style.display = "none";
     }
     });
-    let resultados = productosGlobal.filter(p =>
-        p.nombre.toLowerCase().includes(input)
-    );
+    let resultados = productosGlobal.filter(p => p.nombre.toLowerCase().includes(input));
+
+    if (resultados.length === 0) {
+        document.querySelectorAll(".card[data-nombre]").forEach(card => {
+            if ((card.dataset.nombre || "").includes(input)) {
+                const nombre = card.querySelector("h4")?.textContent || "";
+                const precioTexto = card.querySelector(".precio")?.textContent || "S/ 0";
+                const precio = Number(precioTexto.replace(/[^\d.,]/g, "").replace(",", "."));
+                const imagen = card.querySelector("img")?.getAttribute("src") || "imagenes/logo.png";
+                resultados.push({ nombre, precio, imagen });
+            }
+        });
+    }
 
     if(resultados.length === 0){
         alert("No se encontraron productos");
@@ -65,8 +80,8 @@ function buscar(){
         <div class="card">
             <img src="${p.imagen}">
             <h4>${p.nombre}</h4>
-            <p class="precio">S/ ${p.precio}</p>
-            <button onclick="agregarAlCarrito('${p.nombre}',${p.precio})">
+            <p class="precio">S/ ${Number(p.precio).toFixed(2)}</p>
+            <button onclick="agregarAlCarrito('${p.nombre.replace(/'/g, "\\'")}',${p.precio},'${p.imagen}')">
                 Agregar
             </button>
         </div>

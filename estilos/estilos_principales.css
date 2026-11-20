@@ -896,10 +896,18 @@ body::before {
     .categorias { grid-template-columns: repeat(3, 1fr); }
     .trust-strip { grid-template-columns: 1fr; }
     .banner { min-height: 360px; padding: 34px 28px; }
+    .featured-grid { grid-template-columns: 1fr 1fr; }
+    .featured-card-large { grid-column: 1 / -1; }
 }
 
 @media (max-width: 680px) {
     .contenedor { width: min(100% - 20px, 1180px); }
+    .announcement-bar { align-items: flex-start; flex-direction: column; gap: 4px; }
+    .delivery-bar { grid-template-columns: 1fr; }
+    .featured-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+    .featured-card { min-width: 82%; min-height: 230px; scroll-snap-align: start; }
+    .featured-card-large { min-width: 88%; }
+    .section-heading { align-items: center; }
     .header {
         top: 6px;
         margin: 6px 0 12px;
@@ -997,6 +1005,184 @@ body::before {
         text-align: right;
     }
 }
+
+/* Vivanda-inspired shopping experience */
+.announcement-bar {
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 8px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: #173a27;
+    color: white;
+    font-size: 13px;
+}
+
+.announcement-bar a {
+    color: #ffe38a;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.delivery-bar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 0 0 14px;
+}
+
+.delivery-bar button {
+    min-height: 58px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: white;
+    color: var(--ink);
+    padding: 8px 14px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.delivery-bar button > span:first-child {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: var(--primary-soft);
+}
+
+.delivery-bar small,
+.delivery-bar strong {
+    display: block;
+}
+
+.delivery-bar small {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.section-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.section-heading .titulo {
+    margin: 2px 0 0;
+}
+
+.section-heading > a {
+    color: var(--primary);
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.eyebrow {
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: 1.45fr 1fr 1fr;
+    gap: 14px;
+}
+
+.featured-card {
+    position: relative;
+    min-height: 220px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #123722;
+    color: white;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+}
+
+.featured-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .35s ease;
+}
+
+.featured-card::after {
+    content: "";
+    position: absolute;
+    inset: 45% 0 0;
+    background: linear-gradient(transparent, rgba(12, 52, 31, .92));
+}
+
+.featured-card:hover img {
+    transform: scale(1.035);
+}
+
+.featured-card > div {
+    position: absolute;
+    z-index: 2;
+    left: 18px;
+    right: 18px;
+    bottom: 16px;
+}
+
+.featured-card strong,
+.featured-card small {
+    display: block;
+}
+
+.featured-card small {
+    margin-top: 3px;
+    color: rgba(255,255,255,.82);
+}
+
+.featured-label {
+    position: absolute;
+    z-index: 3;
+    top: 14px;
+    left: 14px;
+    border-radius: 999px;
+    background: #ffb703;
+    color: #493500;
+    padding: 7px 10px;
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.category-chips {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    margin: -4px 0 14px;
+    padding-bottom: 4px;
+}
+
+.category-chips button {
+    flex: 0 0 auto;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: white;
+    color: var(--muted);
+    padding: 9px 16px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.category-chips button.active {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+}
+
 .producto-grid{
     display: flex;
     gap: 40px;
