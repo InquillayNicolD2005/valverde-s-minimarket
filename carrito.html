@@ -558,19 +558,37 @@ function confirmarPago(){
     document.getElementById("metodoPagoConfirmacion").innerText = "Pagado con: " + metodoPago.value;
 }
 
-function finalizarCompra(){
-    // Limpiar carrito
+async function finalizarCompra(){
+    const metodo = document.querySelector('input[name="metodo-pago"]:checked')?.value || "EFECTIVO";
+    const direccion = document.getElementById("direccionEntrega").value.trim();
+    const hora = document.getElementById("horaEntrega").value;
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogeado") || "null");
+
+    try {
+        const payload = new URLSearchParams();
+        payload.append("action", "create_order");
+        payload.append("payload", JSON.stringify({
+            cliente: usuario?.nombre || "Cliente invitado",
+            direccion,
+            hora,
+            metodo,
+            descuento: cuponAplicado ? 10 : 0,
+            items: carrito
+        }));
+        await fetch("admin_api.php", {
+            method: "POST",
+            body: payload
+        });
+    } catch (error) {
+        console.error(error);
+    }
+
     carrito = [];
+    cuponAplicado = false;
     localStorage.setItem("carrito", JSON.stringify(carrito));
-    
-    // Cerrar modal
     document.getElementById("modalPago").classList.remove("activo");
-    
-    // Actualizar página
     actualizarContador();
     mostrarCarrito();
-    
-    // Mensaje final
     alert("¡Compra completada! Gracias por tu compra en Valverde´s.");
 }
 
