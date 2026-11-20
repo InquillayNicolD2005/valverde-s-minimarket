@@ -1,19 +1,16 @@
-<div class="card-pro">
-<div class="card-img"><img src="imagenes/productos/gato_snack.jpg"></div>
-<div class="card-info">
-<h4>GNAWLERS</h4>
-<p class="descripcion">Snack Gato Bonito<br>60g</p>
-<span class="precio">S/ 6.50</span>
-<button class="btn-carrito">🛒 Agregar</button>
-</div>
-</div>
-
-<div class="card-pro">
-<div class="card-img"><img src="imagenes/productos/perro_snack.jpg"></div>
-<div class="card-info">
-<h4>DOGUITOS</h4>
-<p class="descripcion">Snack Carne<br>65g</p>
-<span class="precio">S/ 5.50</span>
-<button class="btn-carrito">🛒 Agregar</button>
-</div>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Mascotas | Valverde's</title><link rel="stylesheet" href="estilos/estilos_principales.css"></head>
+<body><div class="contenedor">
+<header class="header"><div class="logo-contenedor"><img src="imagenes/logo.png" class="logo-img" alt="Valverde's"><h2 class="logo-texto">VALVERDE'S</h2></div><nav class="menu"><a href="index.html">Inicio</a><a href="promociones.html">Ofertas</a><a href="acercadenosotros.html">Acerca de Nosotros</a><a href="login.html" id="usuarioHeader">Iniciar sesión</a></nav><a href="carrito.html" class="carrito">🛒 <span id="contadorCarrito">0</span></a></header>
+<section class="seccion"><h1 class="titulo">Alimentos y Snacks para Mascotas</h1><div class="buscador"><input id="buscadorCategoria" placeholder="Buscar para perro o gato..."><button onclick="buscarCategoria()">Buscar</button></div></section>
+<section class="productos" id="productosCategoria">
+<article class="card-pro" data-nombre="alimento gato mimaskot"><div class="card-img"><img src="imagenes/alimento_mascotas/alimento_GATOMIMASKOT.jpeg" alt="Mimaskot"></div><div class="card-info"><h4>GATITOS MIMASKOT</h4><p class="descripcion">Alimento seco para gatos</p><span class="precio">S/ 18.90</span><button class="btn-carrito" onclick="agregarAlCarrito('Gatos Mimaskot',18.90,'imagenes/alimento_mascotas/alimento_GATOMIMASKOT.jpeg')">Agregar al carrito</button><button class="btn-ver" onclick="verProducto('Gatos Mimaskot',18.90,'imagenes/alimento_mascotas/alimento_GATOMIMASKOT.jpeg')">Ver producto</button></div></article>
+<article class="card-pro" data-nombre="alimento gato gnawlers bonito"><div class="card-img"><img src="imagenes/alimento_mascotas/alimento_GATOGNAWLERS_bonito.jpeg" alt="Gnawlers bonito"></div><div class="card-info"><h4>GNAWLERS BONITO</h4><p class="descripcion">Snack húmedo para gato · 85 g</p><span class="precio">S/ 6.50</span><button class="btn-carrito" onclick="agregarAlCarrito('Gnawlers de bonito',6.50,'imagenes/alimento_mascotas/alimento_GATOGNAWLERS_bonito.jpeg')">Agregar al carrito</button><button class="btn-ver" onclick="verProducto('Gnawlers de bonito',6.50,'imagenes/alimento_mascotas/alimento_GATOGNAWLERS_bonito.jpeg')">Ver producto</button></div></article>
+<article class="card-pro" data-nombre="alimento gato gnawlers salmon"><div class="card-img"><img src="imagenes/alimento_mascotas/alimento_GATOGNAWLERS_salmon.jpeg" alt="Gnawlers salmón"></div><div class="card-info"><h4>GNAWLERS SALMÓN</h4><p class="descripcion">Snack húmedo para gato · 85 g</p><span class="precio">S/ 6.50</span><button class="btn-carrito" onclick="agregarAlCarrito('Gnawlers de salmón',6.50,'imagenes/alimento_mascotas/alimento_GATOGNAWLERS_salmon.jpeg')">Agregar al carrito</button><button class="btn-ver" onclick="verProducto('Gnawlers de salmón',6.50,'imagenes/alimento_mascotas/alimento_GATOGNAWLERS_salmon.jpeg')">Ver producto</button></div></article>
+<article class="card-pro" data-nombre="snack perro doguitos"><div class="card-img"><img src="imagenes/alimento_mascotas/alimento_PERRODOGUITOS.jpeg" alt="Doguitos"></div><div class="card-info"><h4>DOGUITOS</h4><p class="descripcion">Snack para perro · 65 g</p><span class="precio">S/ 5.50</span><button class="btn-carrito" onclick="agregarAlCarrito('Doguitos',5.50,'imagenes/alimento_mascotas/alimento_PERRODOGUITOS.jpeg')">Agregar al carrito</button><button class="btn-ver" onclick="verProducto('Doguitos',5.50,'imagenes/alimento_mascotas/alimento_PERRODOGUITOS.jpeg')">Ver producto</button></div></article>
+<article class="card-pro" data-nombre="snack perro dentitoy"><div class="card-img"><img src="imagenes/alimento_mascotas/alimento_PERRODENTITOY.jpeg" alt="Dentitoy"></div><div class="card-info"><h4>DENTITOY</h4><p class="descripcion">Snack dental para perro</p><span class="precio">S/ 7.90</span><button class="btn-carrito" onclick="agregarAlCarrito('Dentitoy',7.90,'imagenes/alimento_mascotas/alimento_PERRODENTITOY.jpeg')">Agregar al carrito</button><button class="btn-ver" onclick="verProducto('Dentitoy',7.90,'imagenes/alimento_mascotas/alimento_PERRODENTITOY.jpeg')">Ver producto</button></div></article>
+<article class="card-pro" data-nombre="alimento perro rambala patas cerdo"><div class="card-img"><img src="imagenes/alimento_mascotas/alimento_PERRORAMBALA_patascerdo.jpeg" alt="Rambala cerdo"></div><div class="card-info"><h4>RAMBALA CERDO</h4><p class="descripcion">Alimento complementario · 500 g</p><span class="precio">S/ 14.50</span><button class="btn-carrito" onclick="agregarAlCarrito('Rambala Cerdo',14.50,'imagenes/alimento_mascotas/alimento_PERRORAMBALA_patascerdo.jpeg')">Agregar al carrito</button><button class="btn-ver" onclick="verProducto('Rambala Cerdo',14.50,'imagenes/alimento_mascotas/alimento_PERRORAMBALA_patascerdo.jpeg')">Ver producto</button></div></article>
+</section>
+<footer class="footer"><div class="footer-contenido"><div><img src="imagenes/logo.png" width="80"><p>Valverde's Minimarket</p></div></div></footer>
+</div><script src="scripts/carrito_compras.js"></script><script>function buscarCategoria(){const q=document.getElementById("buscadorCategoria").value.toLowerCase().trim();document.querySelectorAll("#productosCategoria .card-pro").forEach(p=>p.style.display=!q||p.dataset.nombre.includes(q)?"":"none");}document.getElementById("buscadorCategoria").addEventListener("input",buscarCategoria);</script></body></html>

@@ -1,19 +1,16 @@
-<div class="card-pro">
-<div class="card-img"><img src="imagenes/productos/oralb.jpg"></div>
-<div class="card-info">
-<h4>ORAL-B</h4>
-<p class="descripcion">Hilo Dental<br>Pack x30</p>
-<span class="precio">S/ 9.90</span>
-<button class="btn-carrito">🛒 Agregar</button>
-</div>
-</div>
-
-<div class="card-pro">
-<div class="card-img"><img src="imagenes/productos/nivea.jpg"></div>
-<div class="card-info">
-<h4>NIVEA</h4>
-<p class="descripcion">Gel de Ducha<br>250ml</p>
-<span class="precio">S/ 10.50</span>
-<button class="btn-carrito">🛒 Agregar</button>
-</div>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Cuidado Personal | Valverde's</title><link rel="stylesheet" href="estilos/estilos_principales.css"></head>
+<body><div class="contenedor">
+<header class="header"><div class="logo-contenedor"><img src="imagenes/logo.png" class="logo-img" alt="Valverde's"><h2 class="logo-texto">VALVERDE'S</h2></div><nav class="menu"><a href="index.html">Inicio</a><a href="promociones.html">Ofertas</a><a href="acercadenosotros.html">Acerca de Nosotros</a><a href="login.html" id="usuarioHeader">Iniciar sesión</a></nav><a href="carrito.html" class="carrito">🛒 <span id="contadorCarrito">0</span></a></header>
+<section class="seccion"><h1 class="titulo">Cuidado Personal</h1><div class="buscador"><input id="buscadorCategoria" placeholder="Buscar cuidado personal..."><button onclick="buscarCategoria()">Buscar</button></div></section>
+<section class="productos" id="productosCategoria">
+<article class="card-pro" data-nombre="cepillo dental balanze"><div class="card-img"><img src="imagenes/cuidado_personal/cepillodental_BALANZE.jpeg" alt="Cepillo"></div><div class="card-info"><h4>CEPILLO DENTAL BALANZE</h4><p class="descripcion">Cepillo suave · unidad</p><span class="precio">S/ 6.50</span><button class="btn-carrito" onclick="agregarAlCarrito('Cepillo Dental Balanze',6.50,'imagenes/cuidado_personal/cepillodental_BALANZE.jpeg')">Agregar al carrito</button><button class="btn-ver" onclick="verProducto('Cepillo Dental Balanze',6.50,'imagenes/cuidado_personal/cepillodental_BALANZE.jpeg')">Ver producto</button></div></article>
+<article class="card-pro" data-nombre="hilo dental oral b"><div class="card-img"><img src="imagenes/cuidado_personal/hilodental_ORALB.jpeg" alt="Hilo dental"></div><div class="card-info"><h4>HILO DENTAL ORAL-B</h4><p class="descripcion">Cuidado interdental · 30 m</p><span class="precio">S/ 9.90</span><button class="btn-carrito" onclick="agregarAlCarrito('Hilo Dental Oral-B',9.90,'imagenes/cuidado_personal/hilodental_ORALB.jpeg')">Agregar al carrito</button><button class="btn-ver" onclick="verProducto('Hilo Dental Oral-B',9.90,'imagenes/cuidado_personal/hilodental_ORALB.jpeg')">Ver producto</button></div></article>
+<article class="card-pro" data-nombre="jabon protex"><div class="card-img"><img src="imagenes/cuidado_personal/jabon_PROTEX.jpeg" alt="Protex"></div><div class="card-info"><h4>JABÓN PROTEX</h4><p class="descripcion">Jabón antibacterial · 110 g</p><span class="precio">S/ 3.50</span><button class="btn-carrito" onclick="agregarAlCarrito('Jabón Protex',3.50,'imagenes/cuidado_personal/jabon_PROTEX.jpeg')">Agregar al carrito</button><button class="btn-ver" onclick="verProducto('Jabón Protex',3.50,'imagenes/cuidado_personal/jabon_PROTEX.jpeg')">Ver producto</button></div></article>
+<article class="card-pro" data-nombre="jabon rexona"><div class="card-img"><img src="imagenes/cuidado_personal/jabon_REXONA.jpeg" alt="Rexona"></div><div class="card-info"><h4>JABÓN REXONA</h4><p class="descripcion">Protección fresca · 125 g</p><span class="precio">S/ 4.20</span><button class="btn-carrito" onclick="agregarAlCarrito('Jabón Rexona',4.20,'imagenes/cuidado_personal/jabon_REXONA.jpeg')">Agregar al carrito</button><button class="btn-ver" onclick="verProducto('Jabón Rexona',4.20,'imagenes/cuidado_personal/jabon_REXONA.jpeg')">Ver producto</button></div></article>
+<article class="card-pro" data-nombre="shampoo h y h"><div class="card-img"><img src="imagenes/cuidado_personal/shampoo_H&H.jpeg" alt="Shampoo"></div><div class="card-info"><h4>SHAMPOO H&H</h4><p class="descripcion">Shampoo cuidado diario · 400 ml</p><span class="precio">S/ 11.50</span><button class="btn-carrito" onclick="agregarAlCarrito('Shampoo H&H',11.50,'imagenes/cuidado_personal/shampoo_H&H.jpeg')">Agregar al carrito</button><button class="btn-ver" onclick="verProducto('Shampoo H&H',11.50,'imagenes/cuidado_personal/shampoo_H&H.jpeg')">Ver producto</button></div></article>
+<article class="card-pro" data-nombre="toallitas huggies"><div class="card-img"><img src="imagenes/cuidado_personal/toallitashumedas_HUGGIES.jpeg" alt="Toallitas"></div><div class="card-info"><h4>TOALLITAS HUGGIES</h4><p class="descripcion">Toallitas húmedas · 80 unidades</p><span class="precio">S/ 12.90</span><button class="btn-carrito" onclick="agregarAlCarrito('Toallitas Huggies',12.90,'imagenes/cuidado_personal/toallitashumedas_HUGGIES.jpeg')">Agregar al carrito</button><button class="btn-ver" onclick="verProducto('Toallitas Huggies',12.90,'imagenes/cuidado_personal/toallitashumedas_HUGGIES.jpeg')">Ver producto</button></div></article>
+</section>
+<footer class="footer"><div class="footer-contenido"><div><img src="imagenes/logo.png" width="80"><p>Valverde's Minimarket</p></div></div></footer>
+</div><script src="scripts/carrito_compras.js"></script><script>function buscarCategoria(){const q=document.getElementById("buscadorCategoria").value.toLowerCase().trim();document.querySelectorAll("#productosCategoria .card-pro").forEach(p=>p.style.display=!q||p.dataset.nombre.includes(q)?"":"none");}document.getElementById("buscadorCategoria").addEventListener("input",buscarCategoria);</script></body></html>
