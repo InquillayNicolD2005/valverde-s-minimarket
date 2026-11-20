@@ -179,7 +179,7 @@ if ($action === "users") {
 
 if ($action === "products") {
     $productos = [];
-    $resultado = $conn->query("SELECT id,nombre,categoria,descripcion,precio,imagen,stock,activo FROM productos ORDER BY nombre ASC");
+    $resultado = $conn->query("SELECT id,nombre,categoria,descripcion,precio,imagen,stock,activo FROM productos ORDER BY categoria ASC, nombre ASC");
     while ($fila = $resultado->fetch_assoc()) $productos[] = $fila;
     echo json_encode(["ok"=>true,"productos"=>$productos]);
     exit;
@@ -216,6 +216,67 @@ if ($action === "delete_product") {
     $stmt->bind_param("i", $id);
     $stmt->execute();
     echo json_encode(["ok"=>true]);
+    exit;
+}
+
+if ($action === "import_catalog") {
+    $categorias = [
+        "categoria_abarrotes.html" => "Abarrotes",
+        "categoria_bebidas.html" => "Bebidas",
+        "categoria_frutas.html" => "Frutas y Verduras",
+        "categoria_lacteos.html" => "Lácteos",
+        "categoria_licores.html" => "Licores",
+        "categoria_limpieza.html" => "Limpieza",
+        "categoria_cuidado.html" => "Cuidado Personal",
+        "categoria_medicinas.html" => "Medicinas",
+        "categoria_mascotas.html" => "Mascotas",
+        "categoria_snacks.html" => "Snacks"
+    ];
+    $importados = 0;
+    $actualizados = 0;
+    $upsert = $conn->prepare("SELECT id,stock FROM productos WHERE nombre=? AND categoria=? LIMIT 1");
+    $insert = $conn->prepare("INSERT INTO productos (nombre,categoria,descripcion,precio,imagen,stock,activo) VALUES (?,?,?,?,?,?,1)");
+    $update = $conn->prepare("UPDATE productos SET descripcion=?,precio=?,imagen=?,activo=1 WHERE id=?");
+
+    foreach ($categorias as $archivo => $categoria) {
+        $ruta = __DIR__ . DIRECTORY_SEPARATOR . $archivo;
+        if (!is_file($ruta)) continue;
+        $html = file_get_contents($ruta);
+        libxml_use_internal_errors(true);
+        $dom = new DOMDocument();
+        $dom->loadHTML($html);
+        $xpath = new DOMXPath($dom);
+        $cards = $xpath->query("//*[contains(concat(' ',normalize-space(@class),' '),' card-pro ')]");
+        foreach ($cards as $card) {
+            $nombreNodo = $xpath->query(".//*[self::h4 or contains(concat(' ',normalize-space(@class),' '),' producto-nombre ')]",$card)->item(0);
+            $imagenNodo = $xpath->query(".//img",$card)->item(0);
+            $precioNodo = $xpath->query(".//*[contains(concat(' ',normalize-space(@class),' '),' precio ')]",$card)->item(0);
+            $descripcionNodo = $xpath->query(".//*[contains(concat(' ',normalize-space(@class),' '),' descripcion ')]",$card)->item(0);
+            if (!$nombreNodo || !$precioNodo) continue;
+            $nombre = trim(preg_replace("/\s+/u"," ",$nombreNodo->textContent));
+            $precioTexto = preg_replace("/[^0-9.,]/u","",$precioNodo->textContent);
+            $precio = floatval(str_replace(",",".",$precioTexto));
+            $imagen = $imagenNodo ? trim($imagenNodo->getAttribute("src")) : "imagenes/logo.png";
+            $descripcion = $descripcionNodo ? trim(preg_replace("/\s+/u"," ",$descripcionNodo->textContent)) : "";
+            if ($nombre === "" || $precio <= 0) continue;
+
+            $upsert->bind_param("ss",$nombre,$categoria);
+            $upsert->execute();
+            $existente = $upsert->get_result()->fetch_assoc();
+            if ($existente) {
+                $id = intval($existente["id"]);
+                $update->bind_param("sdsi",$descripcion,$precio,$imagen,$id);
+                $update->execute();
+                $actualizados++;
+            } else {
+                $stock = 30;
+                $insert->bind_param("sssdsi",$nombre,$categoria,$descripcion,$precio,$imagen,$stock);
+                $insert->execute();
+                $importados++;
+            }
+        }
+    }
+    echo json_encode(["ok"=>true,"importados"=>$importados,"actualizados"=>$actualizados]);
     exit;
 }
 
