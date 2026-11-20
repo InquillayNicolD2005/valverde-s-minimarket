@@ -514,6 +514,10 @@ function cambiarCantidad(index, cambio){
 /* INICIAL */
 mostrarCarrito();
 actualizarContador();
+const usuarioActual = JSON.parse(localStorage.getItem("usuarioLogeado") || "null");
+if(usuarioActual?.direccion && document.getElementById("direccionEntrega")){
+    document.getElementById("direccionEntrega").value = usuarioActual.direccion;
+}
 
 /* FUNCIONES MODAL PAGO */
 function abrirModalPago(){
@@ -522,7 +526,8 @@ function abrirModalPago(){
         alert("Tu carrito está vacío. Agrega productos antes de realizar el pago.");
         return;
     }
-    const direccion = document.getElementById("direccionEntrega").value.trim();
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogeado") || "null");
+    const direccion = document.getElementById("direccionEntrega").value.trim() || usuario?.direccion || "";
     if(!direccion){
         document.getElementById("direccionEntrega").focus();
         alert("Ingresa una dirección de entrega para continuar.");
@@ -560,15 +565,16 @@ function confirmarPago(){
 
 async function finalizarCompra(){
     const metodo = document.querySelector('input[name="metodo-pago"]:checked')?.value || "EFECTIVO";
-    const direccion = document.getElementById("direccionEntrega").value.trim();
-    const hora = document.getElementById("horaEntrega").value;
     const usuario = JSON.parse(localStorage.getItem("usuarioLogeado") || "null");
+    const direccion = document.getElementById("direccionEntrega").value.trim() || usuario?.direccion || "";
+    const hora = document.getElementById("horaEntrega").value;
 
     try {
         const payload = new URLSearchParams();
         payload.append("action", "create_order");
         payload.append("payload", JSON.stringify({
             cliente: usuario?.nombre || "Cliente invitado",
+            usuario_id: usuario?.id || 0,
             direccion,
             hora,
             metodo,

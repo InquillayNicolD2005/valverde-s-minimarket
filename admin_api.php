@@ -6,6 +6,12 @@ include("conexion.php");
 $conn->set_charset("utf8mb4");
 
 function ensure_schema($conn) {
+    $conn->query("ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS nombre VARCHAR(150) NOT NULL DEFAULT ''");
+    $conn->query("ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS email VARCHAR(150) NOT NULL DEFAULT ''");
+    $conn->query("ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS telefono VARCHAR(30) NOT NULL DEFAULT ''");
+    $conn->query("ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS direccion VARCHAR(255) NOT NULL DEFAULT ''");
+    $conn->query("ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP");
+    $conn->query("ALTER TABLE pedidos ADD COLUMN IF NOT EXISTS usuario_id INT NULL");
     $conn->query("CREATE TABLE IF NOT EXISTS administradores (
         id INT AUTO_INCREMENT PRIMARY KEY,
         usuario VARCHAR(100) NOT NULL UNIQUE,
@@ -17,6 +23,7 @@ function ensure_schema($conn) {
 
     $conn->query("CREATE TABLE IF NOT EXISTS pedidos (
         id INT AUTO_INCREMENT PRIMARY KEY,
+        usuario_id INT NULL,
         cliente VARCHAR(150) NOT NULL,
         direccion VARCHAR(255) NOT NULL,
         hora_entrega VARCHAR(100) NOT NULL,
@@ -111,6 +118,7 @@ if ($action === "create_order") {
         exit;
     }
     $cliente = trim($payload["cliente"] ?? "Cliente");
+    $usuarioId = intval($payload["usuario_id"] ?? 0);
     $direccion = trim($payload["direccion"] ?? "");
     $hora = trim($payload["hora"] ?? "Lo antes posible");
     $metodo = trim($payload["metodo"] ?? "EFECTIVO");
@@ -122,8 +130,9 @@ if ($action === "create_order") {
     $delivery = $subtotal > 0 ? 5 : 0;
     $total = $subtotal - $descuento + $delivery;
 
-    $stmt = $conn->prepare("INSERT INTO pedidos (cliente,direccion,hora_entrega,metodo_pago,subtotal,descuento,delivery,total,estado) VALUES (?,?,?,?,?,?,?,?, 'Pendiente')");
-    $stmt->bind_param("ssssdddd", $cliente, $direccion, $hora, $metodo, $subtotal, $descuento, $delivery, $total);
+    $usuarioIdNullable = $usuarioId > 0 ? $usuarioId : null;
+    $stmt = $conn->prepare("INSERT INTO pedidos (usuario_id,cliente,direccion,hora_entrega,metodo_pago,subtotal,descuento,delivery,total,estado) VALUES (?,?,?,?,?,?,?,?,?, 'Pendiente')");
+    $stmt->bind_param("issssdddd", $usuarioIdNullable, $cliente, $direccion, $hora, $metodo, $subtotal, $descuento, $delivery, $total);
     $stmt->execute();
     $pedidoId = $conn->insert_id;
 
@@ -162,7 +171,7 @@ if ($action === "update_status") {
 
 if ($action === "users") {
     $usuarios = [];
-    $resultado = $conn->query("SELECT id,usuario FROM usuarios ORDER BY id DESC");
+    $resultado = $conn->query("SELECT id,usuario,nombre,email,telefono,direccion,creado_en FROM usuarios ORDER BY id DESC");
     while ($fila = $resultado->fetch_assoc()) $usuarios[] = $fila;
     echo json_encode(["ok"=>true,"usuarios"=>$usuarios]);
     exit;

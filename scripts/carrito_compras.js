@@ -386,7 +386,8 @@ function inicializarInterfaz(){
     const user = JSON.parse(localStorage.getItem("usuarioLogeado") || "null");
     const userHeader = document.getElementById("usuarioHeader");
     if (userHeader && user) {
-        userHeader.textContent = "Mi cuenta";
-        userHeader.href = "index.html";
+        userHeader.textContent = "👤 " + (user.nombre || user.usuario || "Mi cuenta");
+        userHeader.href = "carrito.html";
+        userHeader.title = "Ver pedidos y datos de entrega";
     }
 }
