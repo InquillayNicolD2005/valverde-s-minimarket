@@ -1,0 +1,26 @@
+[
+  {
+    "nombre": "Inka Kola",
+    "precio": 4.9,
+    "imagen": "imagenes/productos/inka_kola.jpeg",
+    "categoria": "bebidas"
+  },
+  {
+    "nombre": "Coca Cola",
+    "precio": 3.8,
+    "imagen": "imagenes/productos/coca_cola.jpg",
+    "categoria": "bebidas"
+  },
+  {
+    "nombre": "Arroz",
+    "precio": 17,
+    "imagen": "imagenes/productos/arroz.jpg",
+    "categoria": "abarrotes"
+  },
+  {
+    "nombre": "Whisky",
+    "precio": 40,
+    "imagen": "imagenes/productos/whisky.jpg",
+    "categoria": "licores"
+  }
+]

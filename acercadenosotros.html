@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acerca de Nosotros</title>
+
+<link rel="stylesheet" href="estilos/estilos_principales.css">
+
+<!-- ICONOS (Font Awesome) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* CONTENEDOR */
+.acerca{
+    padding: 20px;
+}
+
+/* PORTADA */
+.portada img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* SECCIONES */
+.info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+    gap: 30px;
+}
+
+/* TEXTO */
+.texto{
+    flex: 1;
+}
+
+/* ICONOS GRANDES 🔥 */
+.icono{
+    font-size: 100px;
+    color: #4CAF50;
+    flex: 1;
+    text-align: center;
+}
+
+/* TITULOS */
+.texto h2{
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+/* PARRAFOS */
+.texto p{
+    font-size: 20px;
+    line-height: 1.6;
+}
+
+/* MAPA */
+.mapa{
+    margin-top: 60px;
+}
+
+.mapa iframe{
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* CONTACTO */
+.contacto{
+    margin-top: 40px;
+}
+
+.contacto h2{
+    font-size: 35px;
+}
+
+.contacto p{
+    font-size: 20px;
+}
+
+/* LIBRO */
+.libro{
+    margin-top: 20px;
+}
+
+.libro img{
+    width: 150px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<!-- HEADER -->
+<header class="header">
+    <div class="logo-contenedor">
+        <img src="imagenes/logo.png" class="logo-img">
+        <h2 class="logo-texto">VALVERDE´S</h2>
+    </div>
+
+    <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="promociones.html">Ofertas</a>
+        <a href="acercadenosotros.html" class="activo">Acerca de Nosotros</a>
+        <a href="login.html" id="usuarioHeader">Iniciar sesión</a>
+    </nav>
+
+    <a href="carrito.html" class="carrito">
+        🛒 <span id="contadorCarrito">0</span>
+    </a>
+</header>
+
+<!-- CONTENIDO -->
+<section class="acerca">
+
+<h2>Acerca de Minimarket Valverde's</h2>
+
+<!-- PORTADA -->
+<div class="portada">
+    <img src="imagenes/tienda.png">
+</div>
+
+<!-- MISIÓN -->
+<div class="info">
+
+    <div class="texto">
+        <h2>MISIÓN</h2>
+        <p>
+        Brindar a nuestros familiares vecinos una experiencia de compra rápida, amable y confiable,
+        ofreciendo productos de primera necesidad, frescos y surtidos y un servicio personalizado
+        que haga sentir a cada cliente como en casa.
+        </p>
+    </div>
+
+    <!-- ICONO 🔥 -->
+    <div class="icono">
+        <i class="fas fa-bullseye"></i>
+    </div>
+
+</div>
+
+<!-- VISIÓN -->
+<div class="info">
+
+    <!-- ICONO 🔥 -->
+    <div class="icono">
+        <i class="fas fa-eye"></i>
+    </div>
+
+    <div class="texto">
+        <h2>VISIÓN</h2>
+        <p>
+        Convertirnos en el minimarket referente de nuestra comunidad, siendo reconocidos por
+        nuestra innovación en el servicio, la variedad de nuestro catálogo y el compromiso constante
+        con el bienestar de nuestros clientes y colaboradores.
+        </p>
+    </div>
+
+</div>
+
+<hr>
+
+<!-- UBICACIÓN -->
+<div class="mapa">
+    <h2>Ubícanos</h2>
+    <iframe src="https://www.google.com/maps?q=C.%20Maruri%20382,%20Cusco%2000800&output=embed"></iframe>
+</div>
+
+<!-- CONTACTO -->
+<div class="contacto">
+    <h2>Contáctanos</h2>
+    <p>📞 Teléfono: +51 963 000 000</p>
+    <p>📧 Correo: valverde's@gmail.com</p>
+
+    <div class="libro">
+        <img src="imagenes/libroreclamos.png">
+        <p>Libro de reclamaciones</p>
+    </div>
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-contenido">
+
+<div>
+<img src="imagenes/logo.png" width="80">
+<p>Valverde´s Minimarket</p>
+<p>📞 +51 986 620 3000</p>
+<p>📍 C. Maruri 382, Cusco 00800</p>
+</div>
+
+<div>
+<h4>Compra en</h4>
+<p>¿Cómo comprar?</p>
+<p>Formas de pago</p>
+<p>Preguntas frecuentes</p>
+</div>
+
+<div>
+<h4>Políticas</h4>
+<p>Términos y condiciones</p>
+<p>Privacidad</p>
+</div>
+
+<div>
+<h4>Síguenos</h4>
+<p>Facebook | Instagram | TikTok</p>
+</div>
+
+</div>
+</footer>
+
+<button class="subir" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+</div>
+
+<script src="scripts/carrito_compras.js"></script>
+
+<script>
+function verificarSesion(){
+    let user = JSON.parse(localStorage.getItem("usuarioLogeado"));
+
+    let header = document.getElementById("usuarioHeader");
+
+    if(user){
+        header.innerHTML = "👤 " + user.nombre + " | Cerrar sesión";
+        header.onclick = cerrarSesion;
+    }else{
+        header.innerHTML = "Iniciar sesión";
+        header.href = "login.html";
+    }
+}
+
+function cerrarSesion(){
+    localStorage.removeItem("usuarioLogeado");
+    window.location.reload();
+}
+
+// ejecutar
+verificarSesion();
+</script>

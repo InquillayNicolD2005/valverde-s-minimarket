@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrito de Compras</title>
+
+<link rel="stylesheet" href="estilos/estilos_principales.css">
+
+<style>
+
+/* CONTENEDOR */
+.carrito-container{
+    padding: 20px;
+}
+
+/* TITULO */
+.titulo-carrito{
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+/* ENCABEZADO */
+.encabezado{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* TARJETA PRODUCTO */
+.item-carrito{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    align-items: center;
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* PRODUCTO INFO */
+.producto-info{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.producto-info img{
+    width: 80px;
+}
+
+/* CANTIDAD */
+.cantidad{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.cantidad button{
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* TOTAL */
+.total{
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+/* BOTON */
+.btn-pago{
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    background: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.btn-pago:hover{
+    background: #1b5e20;
+}
+
+/* MODAL PAGO */
+.modal-pago {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-pago.activo {
+    display: flex;
+}
+
+.modal-contenido {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.modal-titulo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.opciones-pago {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.opcion-pago {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.opcion-pago:hover {
+    border-color: #2e7d32;
+    background: #f0f8f0;
+}
+
+.opcion-pago input[type="radio"] {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.opcion-pago label {
+    flex: 1;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #333;
+}
+
+.modal-botones {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn-modal {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-pagar {
+    background: #2e7d32;
+    color: white;
+    flex: 1;
+}
+
+.btn-pagar:hover {
+    background: #1b5e20;
+}
+
+.btn-cancelar {
+    background: #ddd;
+    color: #333;
+    flex: 1;
+}
+
+.btn-cancelar:hover {
+    background: #bbb;
+}
+
+.mensaje-confirmacion {
+    display: none;
+    padding: 30px;
+    text-align: center;
+}
+
+.mensaje-confirmacion.activo {
+    display: block;
+}
+
+.icono-exito {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.msg-exito {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2e7d32;
+    margin-bottom: 20px;
+}
+
+.btn-eliminar {
+    background: #ff5252;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.btn-eliminar:hover {
+    background: #d32f2f;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<!-- HEADER -->
+<header class="header">
+    <div class="logo-contenedor">
+        <img src="imagenes/logo.png" class="logo-img">
+        <h2 class="logo-texto">VALVERDE´S</h2>
+    </div>
+
+    <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="promociones.html">Ofertas</a>
+        <a href="acercadenosotros.html">Acerca de Nosotros</a>
+        <a href="#" id="usuarioHeader">Iniciar sesión</a>
+    </nav>
+
+    <a href="carrito.html" class="carrito">
+        🛒 <span id="contadorCarrito">0</span>
+    </a>
+</header>
+
+<!-- CONTENIDO -->
+<section class="carrito-container">
+
+<h2 class="titulo-carrito">Carrito de compras</h2>
+
+<!-- ENCABEZADO -->
+<div class="encabezado">
+    <div>Producto</div>
+    <div>Precio</div>
+    <div>Cantidad</div>
+    <div>Subtotal</div>
+</div>
+
+<!-- LISTA -->
+<div id="lista"></div>
+
+<!-- TOTAL -->
+<div class="total">
+    <span>TOTAL</span>
+    <span id="total">S/ 0</span>
+</div>
+
+<!-- BOTON -->
+<button class="btn-pago" onclick="abrirModalPago()">Realizar Pago</button>
+
+<!-- MODAL PAGO -->
+<div id="modalPago" class="modal-pago">
+    <div class="modal-contenido">
+        <!-- OPCIONES DE PAGO -->
+        <div id="opcionesPagoDiv">
+            <h3 class="modal-titulo">Selecciona forma de pago</h3>
+            
+            <div class="opciones-pago">
+                <div class="opcion-pago">
+                    <input type="radio" id="yape" name="metodo-pago" value="YAPE">
+                    <label for="yape">💳 YAPE</label>
+                </div>
+                
+                <div class="opcion-pago">
+                    <input type="radio" id="agora" name="metodo-pago" value="AGORA">
+                    <label for="agora">💳 AGORA</label>
+                </div>
+                
+                <div class="opcion-pago">
+                    <input type="radio" id="visa" name="metodo-pago" value="VISA">
+                    <label for="visa">💳 VISA</label>
+                </div>
+            </div>
+            
+            <div class="modal-botones">
+                <button class="btn-modal btn-pagar" onclick="confirmarPago()">Pagar</button>
+                <button class="btn-modal btn-cancelar" onclick="cerrarModalPago()">Cancelar</button>
+            </div>
+        </div>
+        
+        <!-- CONFIRMACIÓN DE PAGO -->
+        <div id="confirmacionPagoDiv" class="mensaje-confirmacion">
+            <div class="icono-exito">✅</div>
+            <div class="msg-exito">¡Pago realizado exitosamente!</div>
+            <p id="metodoPagoConfirmacion" style="font-size: 18px; margin-bottom: 20px; color: #666;"></p>
+            <button class="btn-modal btn-pagar" onclick="finalizarCompra()" style="width: 200px;">Finalizar</button>
+        </div>
+    </div>
+</div>
+
+</section>
+
+</div>
+
+<script src="scripts/carrito_compras.js"></script>
+
+<script>
+
+/* MOSTRAR CARRITO */
+function mostrarCarrito(){
+    let lista = document.getElementById("lista");
+    let total = 0;
+
+    lista.innerHTML = "";
+
+    carrito.forEach((p,index)=>{
+
+        let subtotal = p.precio * (p.cantidad || 1);
+
+        lista.innerHTML += `
+        <div class="item-carrito">
+
+            <div class="producto-info">
+                <img src="${p.imagen}">
+                <div>
+                    <p>${p.nombre}</p>
+                </div>
+            </div>
+
+            <div>S/ ${p.precio.toFixed(2)}</div>
+
+            <div class="cantidad">
+                <button onclick="cambiarCantidad(${index}, -1)">−</button>
+                <span>${p.cantidad || 1}</span>
+                <button onclick="cambiarCantidad(${index}, 1)">+</button>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div>S/ ${subtotal.toFixed(2)}</div>
+                <button class="btn-eliminar" onclick="eliminarDelCarrito(${index})">ELIMINAR</button>
+            </div>
+
+        </div>
+        `;
+
+        total += subtotal;
+    });
+
+    document.getElementById("total").innerText = "S/ " + total.toFixed(2);
+}
+
+/* CAMBIAR CANTIDAD */
+function cambiarCantidad(index, cambio){
+    if(!carrito[index].cantidad) carrito[index].cantidad = 1;
+
+    carrito[index].cantidad += cambio;
+
+    if(carrito[index].cantidad <= 0){
+        carrito.splice(index,1);
+    }
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    actualizarContador();
+    mostrarCarrito();
+}
+
+/* INICIAL */
+mostrarCarrito();
+actualizarContador();
+
+/* FUNCIONES MODAL PAGO */
+function abrirModalPago(){
+    // Validar que el carrito no esté vacío
+    if(carrito.length === 0){
+        alert("Tu carrito está vacío. Agrega productos antes de realizar el pago.");
+        return;
+    }
+    
+    // Mostrar modal
+    document.getElementById("modalPago").classList.add("activo");
+    document.getElementById("opcionesPagoDiv").style.display = "block";
+    document.getElementById("confirmacionPagoDiv").classList.remove("activo");
+    
+    // Desseleccionar todas las opciones
+    document.querySelectorAll('input[name="metodo-pago"]').forEach(radio => {
+        radio.checked = false;
+    });
+}
+
+function cerrarModalPago(){
+    document.getElementById("modalPago").classList.remove("activo");
+}
+
+function confirmarPago(){
+    let metodoPago = document.querySelector('input[name="metodo-pago"]:checked');
+    
+    if(!metodoPago){
+        alert("Por favor selecciona una forma de pago.");
+        return;
+    }
+    
+    // Cambiar a vista de confirmación
+    document.getElementById("opcionesPagoDiv").style.display = "none";
+    document.getElementById("confirmacionPagoDiv").classList.add("activo");
+    document.getElementById("metodoPagoConfirmacion").innerText = "Pagado con: " + metodoPago.value;
+}
+
+function finalizarCompra(){
+    // Limpiar carrito
+    carrito = [];
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    
+    // Cerrar modal
+    document.getElementById("modalPago").classList.remove("activo");
+    
+    // Actualizar página
+    actualizarContador();
+    mostrarCarrito();
+    
+    // Mensaje final
+    alert("¡Compra completada! Gracias por tu compra en Valverde´s.");
+}
+
+/* ELIMINAR DEL CARRITO */
+function eliminarDelCarrito(index){
+    carrito.splice(index, 1);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    actualizarContador();
+    mostrarCarrito();
+}
+
+// Cerrar modal al hacer click fuera de él
+document.getElementById("modalPago").addEventListener("click", function(e){
+    if(e.target === this){
+        cerrarModalPago();
+    }
+});
+
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-contenido">
+
+<div>
+<img src="imagenes/logo.png" width="80">
+<p>Valverde´s Minimarket</p>
+<p>📞 +51 986 620 3000</p>
+<p>📍 C. Maruri 382, Cusco 00800</p>
+</div>
+
+<div>
+<h4>Compra en</h4>
+<p>¿Cómo comprar?</p>
+<p>Formas de pago</p>
+<p>Preguntas frecuentes</p>
+</div>
+
+<div>
+<h4>Políticas</h4>
+<p>Términos y condiciones</p>
+<p>Privacidad</p>
+</div>
+
+<div>
+<h4>Síguenos</h4>
+<p>Facebook | Instagram | TikTok</p>
+</div>
+
+</div>
+</footer>
+</body>
+</html>

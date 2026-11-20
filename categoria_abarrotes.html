@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abarrotes</title>
+
+<link rel="stylesheet" href="estilos/estilos_principales.css">
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<header class="header">
+<h2 class="logo">VALVERDE´S</h2>
+
+<nav class="menu">
+<a href="index.html">Inicio</a>
+<a href="promociones.html">Ofertas</a>
+<a href="acercadenosotros.html">Acerca de</a>
+<a href="login.html">Iniciar sesión</a>
+</nav>
+
+<a href="carrito.html" class="carrito">🛒 <span id="contadorCarrito">0</span></a>
+</header>
+
+<section class="seccion">
+<h2 class="titulo">ABARROTES</h2>
+
+<div class="buscador">
+<input type="text" id="buscadorCategoria" placeholder="Buscar producto...">
+<button onclick="buscarCategoria()">Buscar</button>
+</div>
+</section>
+
+<section class="productos">
+
+<div class="card-pro" data-nombre="aceite soyabells">
+<div class="card-img"><img src="imagenes/abarrotes/aceite_SOYABELL'S.jpeg"></div>
+<div class="card-info">
+<h4>SOYABELL'S</h4>
+<p class="descripcion">Aceite de Soya<br>Botella 1L</p>
+<span class="precio">S/ 11.50</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Aceite Soyabells',11.50,'imagenes/abarrotes/aceite_SOYABELL\'S.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Aceite Soyabells',11.50,'imagenes/abarrotes/aceite_SOYABELL\'S.jpeg','Aceite de Soya. Botella 1L')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="aceite primor">
+<div class="card-img"><img src="imagenes/abarrotes/aceite_VEGETALPRIMOR.jpeg"></div>
+<div class="card-info">
+<h4>PRIMOR</h4>
+<p class="descripcion">Aceite Vegetal<br>Botella 1L</p>
+<span class="precio">S/ 12.50</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Aceite Primor',12.50,'imagenes/abarrotes/aceite_VEGETALPRIMOR.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Aceite Primor',12.50,'imagenes/abarrotes/aceite_VEGETALPRIMOR.jpeg','Aceite Vegetal. Botella 1L')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="arroz bells">
+<div class="card-img"><img src="imagenes/abarrotes/arroz_BELL'S_5kg.jpeg"></div>
+<div class="card-info">
+<h4>BELL'S</h4>
+<p class="descripcion">Arroz Grano Largo<br>Bolsa 5kg</p>
+<span class="precio">S/ 25.00</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Arroz Bell\'s',25.00,'imagenes/abarrotes/arroz_BELL\'S_5kg.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Arroz Bell\'s',25.00,'imagenes/abarrotes/arroz_BELL\'S_5kg.jpeg','Arroz Grano Largo. Bolsa 5kg')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="arroz costeño">
+<div class="card-img"><img src="imagenes/abarrotes/arroz_COSTE�O_750g.jpeg"></div>
+<div class="card-info">
+<h4>COSTEÑO</h4>
+<p class="descripcion">Arroz Extra Añejo<br>750g</p>
+<span class="precio">S/ 5.50</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Arroz Costeño',5.50,'imagenes/abarrotes/arroz_COSTEÑO_750g.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Arroz Costeño',5.50,'imagenes/abarrotes/arroz_COSTEÑO_750g.jpeg','Arroz Extra Añejo. 750g')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="fideos molitalia">
+<div class="card-img"><img src="imagenes/abarrotes/fideos_MOLITALIA_macarron.jpeg"></div>
+<div class="card-info">
+<h4>MOLITALIA</h4>
+<p class="descripcion">Fideos Macarrón<br>250g</p>
+<span class="precio">S/ 2.50</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Fideos Molitalia',2.50,'imagenes/abarrotes/fideos_MOLITALIA_macarron.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Fideos Molitalia',2.50,'imagenes/abarrotes/fideos_MOLITALIA_macarron.jpeg','Fideos Macarrón. 250g')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="fideos molitalia">
+<div class="card-img"><img src="imagenes/abarrotes/fideos_NICOLINI_spaghetti.jpeg"></div>
+<div class="card-info">
+<h4>NICOLINI</h4>
+<p class="descripcion">Spaghetti<br>500g</p>
+<span class="precio">S/ 3.20</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Fideos Nicolini',3.20,'imagenes/abarrotes/fideos_NICOLINI_spaghetti.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Fideos Nicolini',3.20,'imagenes/abarrotes/fideos_NICOLINI_spaghetti.jpeg','Spaghetti. 500g')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="fideos molitalia">
+<div class="card-img"><img src="imagenes/abarrotes/harina_MOLITALIA_preparada_1kg.jpeg"></div>
+<div class="card-info">
+<h4>BENOTI</h4>
+<p class="descripcion">Harina<br>1kg</p>
+<span class="precio">S/ 4.00</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Harina Benoti',4.00,'imagenes/abarrotes/harina_MOLITALIA_preparada_1kg.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Harina Benoti',4.00,'imagenes/abarrotes/harina_MOLITALIA_preparada_1kg.jpeg','Harina. 1kg')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="fideos molitalia">
+<div class="card-img"><img src="imagenes/productos/harina2.jpg"></div>
+<div class="card-info">
+<h4>MOLITALIA</h4>
+<p class="descripcion">Harina Preparada<br>1kg</p>
+<span class="precio">S/ 4.50</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Harina Molitalia',4.50,'imagenes/productos/harina2.jpg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Harina Molitalia',4.50,'imagenes/productos/harina2.jpg','Harina Preparada. 1kg')">VER</button>
+</div>
+</div>
+
+</section>
+
+<!-- BOTÓN SCROLL TOP -->
+<button class="btn-scroll-top" id="btnScrollTop" onclick="scrollToTop()">↑</button>
+
+</div>
+
+<script src="scripts/carrito_compras.js"></script>
+
+<script>
+function buscarCategoria(){
+let input = document.getElementById("buscadorCategoria").value.toLowerCase();
+
+document.querySelectorAll(".card-pro").forEach(p=>{
+let nombre = p.getAttribute("data-nombre") || "";
+p.style.display = nombre.includes(input) ? "block" : "none";
+});
+}
+
+// Botón scroll to top
+const btnScrollTop = document.getElementById('btnScrollTop');
+
+window.addEventListener('scroll', () => {
+    if(window.pageYOffset > 300){
+        btnScrollTop.classList.add('visible');
+    } else {
+        btnScrollTop.classList.remove('visible');
+    }
+});
+
+function scrollToTop(){
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+actualizarContador();
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-contenido">
+<div>
+<img src="imagenes/logo.png" width="80">
+<p>Valverde´s Minimarket</p>
+<p>📞 +51 986 620 3000</p>
+<p>📍 C. Maruri 382, Cusco 00800</p>
+</div>
+<div>
+<h4>Compra en</h4>
+<p>¿Cómo comprar?</p>
+<p>Formas de pago</p>
+<p>Preguntas frecuentes</p>
+</div>
+<div>
+<h4>Políticas</h4>
+<p>Términos y condiciones</p>
+<p>Privacidad</p>
+</div>
+<div>
+<h4>Síguenos</h4>
+<p>Facebook | Instagram | TikTok</p>
+</div>
+</div>
+</footer>
+
+</body>
+</html>

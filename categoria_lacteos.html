@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lácteos</title>
+
+<link rel="stylesheet" href="estilos/estilos_principales.css">
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<header class="header">
+<h2 class="logo">VALVERDE´S</h2>
+
+<nav class="menu">
+<a href="index.html">Inicio</a>
+<a href="promociones.html">Ofertas</a>
+<a href="acercadenosotros.html">Acerca de</a>
+<a href="login.html">Iniciar sesión</a>
+</nav>
+
+<a href="carrito.html" class="carrito">🛒 <span id="contadorCarrito">0</span></a>
+</header>
+
+<section class="seccion">
+<h2 class="titulo">LÁCTEOS</h2>
+
+<div class="buscador">
+<input type="text" id="buscadorCategoria" placeholder="Buscar producto...">
+<button onclick="buscarCategoria()">Buscar</button>
+</div>
+</section>
+
+<section class="productos">
+
+<div class="card-pro" data-nombre="leche gloria">
+<div class="card-img"><img src="imagenes/lacteos/leche_GLORIA.jpeg"></div>
+<div class="card-info">
+<h4>GLORIA</h4>
+<p class="descripcion">Leche Entera<br>Caja 1L</p>
+<span class="precio">S/ 4.50</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Gloria',4.50,'imagenes/lacteos/leche_GLORIA.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Leche Gloria',4.50,'imagenes/lacteos/leche_GLORIA.jpeg','Leche Entera. Caja 1L')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche gloria light">
+<div class="card-img"><img src="imagenes/lacteos/leche_GLORIA_light.jpeg"></div>
+<div class="card-info">
+<h4>GLORIA LIGHT</h4>
+<p class="descripcion">Leche Baja en Grasa<br>Caja 1L</p>
+<span class="precio">S/ 4.80</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Gloria Light',4.80,'imagenes/lacteos/leche_GLORIA_light.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Leche Gloria Light',4.80,'imagenes/lacteos/leche_GLORIA_light.jpeg','Leche Baja en Grasa. Caja 1L')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche gloria niños">
+<div class="card-img"><img src="imagenes/lacteos/leche_GLORIA_niños.jpeg"></div>
+<div class="card-info">
+<h4>GLORIA NIÑOS</h4>
+<p class="descripcion">Leche para Niños<br>Caja 1L</p>
+<span class="precio">S/ 5.20</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Gloria Niños',5.20,'imagenes/lacteos/leche_GLORIA_niños.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Leche Gloria Niños',5.20,'imagenes/lacteos/leche_GLORIA_niños.jpeg','Leche para Niños. Caja 1L')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche gloria polvo">
+<div class="card-img"><img src="imagenes/lacteos/leche_GLORIA_polvo.jpeg"></div>
+<div class="card-info">
+<h4>GLORIA POLVO</h4>
+<p class="descripcion">Leche en Polvo<br>Bolsa 400g</p>
+<span class="precio">S/ 12.50</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Gloria Polvo',12.50,'imagenes/lacteos/leche_GLORIA_polvo.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Leche Gloria Polvo',12.50,'imagenes/lacteos/leche_GLORIA_polvo.jpeg','Leche en Polvo. Bolsa 400g')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche bells">
+<div class="card-img"><img src="imagenes/lacteos/leche_BELLS_entera.jpeg"></div>
+<div class="card-info">
+<h4>BELLS ENTERA</h4>
+<p class="descripcion">Leche Entera<br>Caja 1L</p>
+<span class="precio">S/ 4.30</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Bells Entera',4.30,'imagenes/lacteos/leche_BELLS_entera.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Leche Bells Entera',4.30,'imagenes/lacteos/leche_BELLS_entera.jpeg','Leche Entera. Caja 1L')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche bells light">
+<div class="card-img"><img src="imagenes/lacteos/leche_BELLS_light.jpeg"></div>
+<div class="card-info">
+<h4>BELLS LIGHT</h4>
+<p class="descripcion">Leche Baja en Grasa<br>Caja 1L</p>
+<span class="precio">S/ 4.60</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Bells Light',4.60,'imagenes/lacteos/leche_BELLS_light.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Leche Bells Light',4.60,'imagenes/lacteos/leche_BELLS_light.jpeg','Leche Baja en Grasa. Caja 1L')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche laive sin lactosa">
+<div class="card-img"><img src="imagenes/lacteos/leche_LAIVE_sinlactosa.jpeg"></div>
+<div class="card-info">
+<h4>LAIVE SIN LACTOSA</h4>
+<p class="descripcion">Leche Sin Lactosa<br>Caja 1L</p>
+<span class="precio">S/ 6.50</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Laive Sin Lactosa',6.50,'imagenes/lacteos/leche_LAIVE_sinlactosa.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Leche Laive Sin Lactosa',6.50,'imagenes/lacteos/leche_LAIVE_sinlactosa.jpeg','Leche Sin Lactosa. Caja 1L')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche condensada gloria">
+<div class="card-img"><img src="imagenes/lacteos/lechecondensada_GLORIA.png"></div>
+<div class="card-info">
+<h4>GLORIA CONDENSADA</h4>
+<p class="descripcion">Leche Condensada<br>Lata 400g</p>
+<span class="precio">S/ 3.80</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Condensada Gloria',3.80,'imagenes/lacteos/lechecondensada_GLORIA.png')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Leche Condensada Gloria',3.80,'imagenes/lacteos/lechecondensada_GLORIA.png','Leche Condensada. Lata 400g')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche condensada bells">
+<div class="card-img"><img src="imagenes/lacteos/lechecondensada_BELLS.jpeg"></div>
+<div class="card-info">
+<h4>BELLS CONDENSADA</h4>
+<p class="descripcion">Leche Condensada<br>Lata 400g</p>
+<span class="precio">S/ 3.60</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Condensada Bells',3.60,'imagenes/lacteos/lechecondensada_BELLS.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Leche Condensada Bells',3.60,'imagenes/lacteos/lechecondensada_BELLS.jpeg','Leche Condensada. Lata 400g')">VER</button>
+</div>
+</div>
+
+</section>
+
+<!-- BOTÓN SCROLL TOP -->
+<button class="btn-scroll-top" id="btnScrollTop" onclick="scrollToTop()">↑</button>
+
+</div>
+
+<script src="scripts/carrito_compras.js"></script>
+
+<script>
+function buscarCategoria(){
+let input = document.getElementById("buscadorCategoria").value.toLowerCase();
+
+document.querySelectorAll(".card-pro").forEach(p=>{
+let nombre = p.getAttribute("data-nombre") || "";
+p.style.display = nombre.includes(input) ? "block" : "none";
+});
+}
+
+// Botón scroll to top
+const btnScrollTop = document.getElementById('btnScrollTop');
+
+window.addEventListener('scroll', () => {
+    if(window.pageYOffset > 300){
+        btnScrollTop.classList.add('visible');
+    } else {
+        btnScrollTop.classList.remove('visible');
+    }
+});
+
+function scrollToTop(){
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+actualizarContador();
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-contenido">
+<div>
+<img src="imagenes/logo.png" width="80">
+<p>Valverde´s Minimarket</p>
+<p>📞 +51 986 620 3000</p>
+<p>📍 C. Maruri 382, Cusco 00800</p>
+</div>
+<div>
+<h4>Compra en</h4>
+<p>¿Cómo comprar?</p>
+<p>Formas de pago</p>
+<p>Preguntas frecuentes</p>
+</div>
+<div>
+<h4>Políticas</h4>
+<p>Términos y condiciones</p>
+<p>Privacidad</p>
+</div>
+<div>
+<h4>Síguenos</h4>
+<p>Facebook | Instagram | TikTok</p>
+</div>
+</div>
+</footer>
+
+</body>
+</html>
+
+<div class="card-pro" data-nombre="leche gloria">
+<div class="card-img"><img src="imagenes/lacteos/leche_GLORIA.jpeg"></div>
+<div class="card-info">
+<h4>GLORIA</h4>
+<p class="descripcion">Leche Entera<br>Caja 1L</p>
+<span class="precio">S/ 4.50</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Gloria',4.50,'imagenes/lacteos/leche_GLORIA.jpeg')">AGREGAR</button>
+<button class="btn-ver" onclick="verProducto('Leche Gloria',4.50,'imagenes/lacteos/leche_GLORIA.jpeg','Leche Entera. Caja 1L')">VER</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche gloria light">
+<div class="card-img"><img src="imagenes/lacteos/leche_GLORIA_light.jpeg"></div>
+<div class="card-info">
+<h4>GLORIA LIGHT</h4>
+<p class="descripcion">Leche Baja en Grasa<br>Caja 1L</p>
+<span class="precio">S/ 4.80</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Gloria Light',4.80,'imagenes/lacteos/leche_GLORIA_light.jpeg')">AGREGAR</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche gloria niños">
+<div class="card-img"><img src="imagenes/lacteos/leche_GLORIA_niños.jpeg"></div>
+<div class="card-info">
+<h4>GLORIA NIÑOS</h4>
+<p class="descripcion">Leche para Niños<br>Caja 1L</p>
+<span class="precio">S/ 5.20</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Gloria Niños',5.20,'imagenes/lacteos/leche_GLORIA_niños.jpeg')">AGREGAR</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche gloria polvo">
+<div class="card-img"><img src="imagenes/lacteos/leche_GLORIA_polvo.jpeg"></div>
+<div class="card-info">
+<h4>GLORIA POLVO</h4>
+<p class="descripcion">Leche en Polvo<br>Bolsa 400g</p>
+<span class="precio">S/ 12.50</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Gloria Polvo',12.50,'imagenes/lacteos/leche_GLORIA_polvo.jpeg')">AGREGAR</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche bells">
+<div class="card-img"><img src="imagenes/lacteos/leche_BELLS_entera.jpeg"></div>
+<div class="card-info">
+<h4>BELLS ENTERA</h4>
+<p class="descripcion">Leche Entera<br>Caja 1L</p>
+<span class="precio">S/ 4.30</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Bells Entera',4.30,'imagenes/lacteos/leche_BELLS_entera.jpeg')">AGREGAR</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche bells light">
+<div class="card-img"><img src="imagenes/lacteos/leche_BELLS_light.jpeg"></div>
+<div class="card-info">
+<h4>BELLS LIGHT</h4>
+<p class="descripcion">Leche Baja en Grasa<br>Caja 1L</p>
+<span class="precio">S/ 4.60</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Bells Light',4.60,'imagenes/lacteos/leche_BELLS_light.jpeg')">AGREGAR</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche laive sin lactosa">
+<div class="card-img"><img src="imagenes/lacteos/leche_LAIVE_sinlactosa.jpeg"></div>
+<div class="card-info">
+<h4>LAIVE SIN LACTOSA</h4>
+<p class="descripcion">Leche Sin Lactosa<br>Caja 1L</p>
+<span class="precio">S/ 6.50</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Laive Sin Lactosa',6.50,'imagenes/lacteos/leche_LAIVE_sinlactosa.jpeg')">AGREGAR</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche condensada gloria">
+<div class="card-img"><img src="imagenes/lacteos/lechecondensada_GLORIA.png"></div>
+<div class="card-info">
+<h4>GLORIA CONDENSADA</h4>
+<p class="descripcion">Leche Condensada<br>Lata 400g</p>
+<span class="precio">S/ 3.80</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Condensada Gloria',3.80,'imagenes/lacteos/lechecondensada_GLORIA.png')">AGREGAR</button>
+</div>
+</div>
+
+<div class="card-pro" data-nombre="leche condensada bells">
+<div class="card-img"><img src="imagenes/lacteos/lechecondensada_BELLS.jpeg"></div>
+<div class="card-info">
+<h4>BELLS CONDENSADA</h4>
+<p class="descripcion">Leche Condensada<br>Lata 400g</p>
+<span class="precio">S/ 3.60</span>
+<button class="btn-carrito" onclick="agregarAlCarrito('Leche Condensada Bells',3.60,'imagenes/lacteos/lechecondensada_BELLS.jpeg')">AGREGAR</button>
+</div>
+</div>
+
+</section>
+
+</div>
+
+<script src="scripts/carrito_compras.js"></script>
+
+<script>
+function buscarCategoria(){
+let input = document.getElementById("buscadorCategoria").value.toLowerCase();
+
+document.querySelectorAll(".card-pro").forEach(p=>{
+let nombre = p.getAttribute("data-nombre") || "";
+p.style.display = nombre.includes(input) ? "block" : "none";
+});
+}
+</script>
+
+</body>
+</html>
+                <div class="card-img"><img src="imagenes/frutas_verduras/verdura_PALTA.jpeg" alt="PALTA"></div>
+                <div class="card-info">
+                    <h4>PALTA</h4>
+                    <p class="descripcion">Palta fuerte<br>1kg</p>
+                    <span class="precio">S/ 5.50</span>
+                    <div class="card-buttons">
+                        <button class="btn-carrito">🛒 Agregar</button>
+                        <button class="btn-ver">👁️ Ver</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-pro" data-nombre="PAPA">
+                <div class="card-img"><img src="imagenes/frutas_verduras/verdura_PAPA.jpeg" alt="PAPA"></div>
+                <div class="card-info">
+                    <h4>PAPA</h4>
+                    <p class="descripcion">Papa blanca<br>1kg</p>
+                    <span class="precio">S/ 2.80</span>
+                    <div class="card-buttons">
+                        <button class="btn-carrito">🛒 Agregar</button>
+                        <button class="btn-ver">👁️ Ver</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-pro" data-nombre="TOMATE">
+                <div class="card-img"><img src="imagenes/frutas_verduras/verdura_TOMATE.jpeg" alt="TOMATE"></div>
+                <div class="card-info">
+                    <h4>TOMATE</h4>
+                    <p class="descripcion">Tomate rojo<br>1kg</p>
+                    <span class="precio">S/ 4.20</span>
+                    <div class="card-buttons">
+                        <button class="btn-carrito">🛒 Agregar</button>
+                        <button class="btn-ver">👁️ Ver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>Email: info@valverdes.com</p>
+                <p>Teléfono: (123) 456-7890</p>
+            </div>
+            <div class="footer-section">
+                <h4>Categorías</h4>
+                <ul>
+                    <li><a href="categoria_frutas.html">Frutas y Verduras</a></li>
+                    <li><a href="categoria_snacks.html">Snacks</a></li>
+                    <li><a href="categoria_licores.html">Licores</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Información</h4>
+                <ul>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Libro de Reclamaciones</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Valverdes. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function verificarSesion() {
+            const usuario = localStorage.getItem('usuario');
+            const enlaceLogin = document.getElementById('usuarioHeader');
+            if (usuario) {
+                enlaceLogin.innerHTML = '👤 ' + usuario;
+                enlaceLogin.href = '#';
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('keyup', function(e) {
+            const searchTerm = e.target.value.toLowerCase().replace(/\s+/g, '');
+            const productos = document.querySelectorAll('.card-pro');
+            
+            productos.forEach(producto => {
+                const nombre = producto.getAttribute('data-nombre').toLowerCase().replace(/\s+/g, '');
+                if (nombre.includes(searchTerm)) {
+                    producto.style.display = 'block';
+                } else {
+                    producto.style.display = 'none';
+                }
+            });
+        });
+
+        document.querySelectorAll('.btn-carrito').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const producto = this.closest('.card-pro');
+                const nombre = producto.querySelector('h4').textContent;
+                const precio = producto.querySelector('.precio').textContent;
+                alert('Producto agregado: ' + nombre + ' (' + precio + ')');
+            });
+        });
+
+        document.querySelectorAll('.btn-ver').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const producto = this.closest('.card-pro');
+                const nombre = producto.querySelector('h4').textContent;
+                alert('Ver detalles de: ' + nombre);
+            });
+        });
+
+        verificarSesion();
+    </script>
+</body>
+</html>

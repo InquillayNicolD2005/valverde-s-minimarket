@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Licores</title>
+<link rel="stylesheet" href="estilos/estilos_principales.css">
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<!-- HEADER -->
+<header class="header">
+    <div class="logo-contenedor">
+        <img src="imagenes/logo.png" alt="Logo Valverde´s" class="logo-img">
+        <h2 class="logo-texto">VALVERDE´S</h2>
+    </div>
+
+    <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="promociones.html">Ofertas</a>
+        <a href="acercadenosotros.html">Acerca de</a>
+        <a href="login.html" id="usuarioHeader">Iniciar sesión</a>
+    </nav>
+
+    <a href="carrito.html" class="carrito">
+        🛒 <span id="contadorCarrito">0</span>
+    </a>
+</header>
+
+<!-- TITULO + BUSCADOR -->
+<section class="seccion">
+    <h2 class="titulo">LICORES</h2>
+
+    <div class="buscador">
+        <input type="text" id="buscadorCategoria" placeholder="Buscar producto...">
+        <button onclick="buscarCategoria()">Buscar</button>
+    </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section class="productos">
+
+<!-- APEROL -->
+<div class="card-pro" data-nombre="aperol">
+<div class="card-img"><img src="imagenes/licores/licor_APEROL_750ml.jpeg"></div>
+<div class="card-info">
+<h4>APEROL</h4>
+<p class="descripcion">Botella 750ml</p>
+<span class="precio">S/ 42.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Aperol',42.0,'imagenes/licores/licor_APEROL_750ml.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Aperol',42.0,'imagenes/licores/licor_APEROL_750ml.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- CAMPARI -->
+<div class="card-pro" data-nombre="campari">
+<div class="card-img"><img src="imagenes/licores/licor_CAMPARI_750ml.jpeg"></div>
+<div class="card-info">
+<h4>CAMPARI</h4>
+<p class="descripcion">Botella 750ml</p>
+<span class="precio">S/ 48.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Campari',48.0,'imagenes/licores/licor_CAMPARI_750ml.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Campari',48.0,'imagenes/licores/licor_CAMPARI_750ml.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- DISARONNO -->
+<div class="card-pro" data-nombre="disaronno">
+<div class="card-img"><img src="imagenes/licores/licor_DISARONNO_700ml.jpeg"></div>
+<div class="card-info">
+<h4>DISARONNO</h4>
+<p class="descripcion">Botella 700ml</p>
+<span class="precio">S/ 50.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Disaronno',50.0,'imagenes/licores/licor_DISARONNO_700ml.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Disaronno',50.0,'imagenes/licores/licor_DISARONNO_700ml.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- JÄGERMEISTER -->
+<div class="card-pro" data-nombre="jagermeister">
+<div class="card-img"><img src="imagenes/licores/licor_JAGERMEISTER.jpeg"></div>
+<div class="card-info">
+<h4>JÄGERMEISTER</h4>
+<p class="descripcion">Botella 700ml</p>
+<span class="precio">S/ 45.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Jägermeister',45.0,'imagenes/licores/licor_JAGERMEISTER.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Jägermeister',45.0,'imagenes/licores/licor_JAGERMEISTER.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- LICOR 43 -->
+<div class="card-pro" data-nombre="licor 43">
+<div class="card-img"><img src="imagenes/licores/licor_LICOR43_700ml.jpeg"></div>
+<div class="card-info">
+<h4>LICOR 43</h4>
+<p class="descripcion">Botella 700ml</p>
+<span class="precio">S/ 38.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Licor 43',38.0,'imagenes/licores/licor_LICOR43_700ml.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Licor 43',38.0,'imagenes/licores/licor_LICOR43_700ml.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- LUZARDO -->
+<div class="card-pro" data-nombre="luzardo">
+<div class="card-img"><img src="imagenes/licores/licor_LUZARDO_750ml.jpeg"></div>
+<div class="card-info">
+<h4>LUZARDO</h4>
+<p class="descripcion">Botella 750ml</p>
+<span class="precio">S/ 52.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Luzardo',52.0,'imagenes/licores/licor_LUZARDO_750ml.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Luzardo',52.0,'imagenes/licores/licor_LUZARDO_750ml.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- MR JIGGER SECO -->
+<div class="card-pro" data-nombre="mr jigger">
+<div class="card-img"><img src="imagenes/licores/licor_MRJIGGER_secbotella_750ml.jpeg"></div>
+<div class="card-info">
+<h4>MR JIGGER SECO</h4>
+<p class="descripcion">Botella 750ml</p>
+<span class="precio">S/ 35.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Mr Jigger',35.0,'imagenes/licores/licor_MRJIGGER_secbotella_750ml.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Mr Jigger',35.0,'imagenes/licores/licor_MRJIGGER_secbotella_750ml.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- SMIRNOFF -->
+<div class="card-pro" data-nombre="smirnoff">
+<div class="card-img"><img src="imagenes/licores/licor_SMIRNOFF_original.jpeg"></div>
+<div class="card-info">
+<h4>SMIRNOFF ORIGINAL</h4>
+<p class="descripcion">Botella 750ml</p>
+<span class="precio">S/ 40.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Smirnoff',40.0,'imagenes/licores/licor_SMIRNOFF_original.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Smirnoff',40.0,'imagenes/licores/licor_SMIRNOFF_original.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- BAILEY'S EXPRESSO -->
+<div class="card-pro" data-nombre="baileys">
+<div class="card-img"><img src="imagenes/licores/licor_BAILEYSEXPRESSO.jpeg"></div>
+<div class="card-info">
+<h4>BAILEY'S EXPRESSO</h4>
+<p class="descripcion">Botella 750ml</p>
+<span class="precio">S/ 55.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Bailey''s',55.0,'imagenes/licores/licor_BAILEYSEXPRESSO.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Bailey''s',55.0,'imagenes/licores/licor_BAILEYSEXPRESSO.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- LICOR DE CREMA BURGOS -->
+<div class="card-pro" data-nombre="licor crema burgos">
+<div class="card-img"><img src="imagenes/licores/licordecrema_BURGOS_750ml.jpeg"></div>
+<div class="card-info">
+<h4>LICOR DE CREMA BURGOS</h4>
+<p class="descripcion">Botella 750ml</p>
+<span class="precio">S/ 32.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Licor Crema Burgos',32.0,'imagenes/licores/licordecrema_BURGOS_750ml.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Licor Crema Burgos',32.0,'imagenes/licores/licordecrema_BURGOS_750ml.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- LICOR DE CREMA CAROLAN IRISH -->
+<div class="card-pro" data-nombre="carolan irish">
+<div class="card-img"><img src="imagenes/licores/licordecrema_CAROLANSIRISH.jpeg"></div>
+<div class="card-info">
+<h4>CAROLAN IRISH CREAM</h4>
+<p class="descripcion">Botella 750ml</p>
+<span class="precio">S/ 48.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Carolan Irish',48.0,'imagenes/licores/licordecrema_CAROLANSIRISH.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Carolan Irish',48.0,'imagenes/licores/licordecrema_CAROLANSIRISH.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- FRANGELICO -->
+<div class="card-pro" data-nombre="frangelico">
+<div class="card-img"><img src="imagenes/licores/licordecrema_FRANGELICO_750ml.jpeg"></div>
+<div class="card-info">
+<h4>FRANGELICO</h4>
+<p class="descripcion">Botella 750ml</p>
+<span class="precio">S/ 50.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Frangelico',50.0,'imagenes/licores/licordecrema_FRANGELICO_750ml.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Frangelico',50.0,'imagenes/licores/licordecrema_FRANGELICO_750ml.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- SARCAY -->
+<div class="card-pro" data-nombre="sarcay">
+<div class="card-img"><img src="imagenes/licores/licordecrema_SARCAY_700ml.jpeg"></div>
+<div class="card-info">
+<h4>SARCAY</h4>
+<p class="descripcion">Botella 700ml</p>
+<span class="precio">S/ 28.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Sarcay',28.0,'imagenes/licores/licordecrema_SARCAY_700ml.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Sarcay',28.0,'imagenes/licores/licordecrema_SARCAY_700ml.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+</section>
+
+<script src="scripts/carrito_compras.js"></script>
+
+<script>
+function buscarCategoria(){
+    let input = document.getElementById("buscadorCategoria").value.toLowerCase();
+
+    document.querySelectorAll(".card-pro").forEach(p=>{
+        let nombre = p.getAttribute("data-nombre");
+        p.style.display = nombre.includes(input) ? "block" : "none";
+    });
+}
+</script>
+
+<script>
+function verificarSesion(){
+    let user = JSON.parse(localStorage.getItem("usuarioLogeado"));
+
+    let header = document.getElementById("usuarioHeader");
+
+    if(user){
+        header.innerHTML = "👤 " + user.nombre + " | Cerrar sesión";
+        header.onclick = cerrarSesion;
+    }else{
+        header.innerHTML = "Iniciar sesión";
+        header.href = "login.html";
+    }
+}
+
+function cerrarSesion(){
+    localStorage.removeItem("usuarioLogeado");
+    window.location.reload();
+}
+
+// ejecutar
+verificarSesion();
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-contenido">
+
+<div>
+<img src="imagenes/logo.png" width="80">
+<p>Valverde´s Minimarket</p>
+<p>📞 +51 986 620 3000</p>
+<p>📍 C. Maruri 382, Cusco 00800</p>
+</div>
+
+<div>
+<h4>Compra en</h4>
+<p>¿Cómo comprar?</p>
+<p>Formas de pago</p>
+<p>Preguntas frecuentes</p>
+</div>
+
+<div>
+<h4>Políticas</h4>
+<p>Términos y condiciones</p>
+<p>Privacidad</p>
+</div>
+
+<div>
+<h4>Síguenos</h4>
+<p>Facebook | Instagram | TikTok</p>
+</div>
+
+</div>
+</footer>
+
+<button class="subir" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+</div>
+
+</body>
+</html>

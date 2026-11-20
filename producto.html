@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Producto</title>
+
+<link rel="stylesheet" href="estilos/estilos_principales.css">
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<!-- HEADER -->
+<header class="header">
+    <div class="logo-contenedor">
+        <img src="imagenes/logo.png" class="logo-img">
+        <h2 class="logo-texto">VALVERDE´S</h2>
+    </div>
+
+    <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="promociones.html">Ofertas</a>
+        <a href="acercadenosotros.html">Acerca de Nosotros</a>
+        <a href="#" id="usuarioHeader">Iniciar sesión</a>
+    </nav>
+
+    <a href="carrito.html" class="carrito">
+        🛒 <span id="contadorCarrito">0</span>
+    </a>
+</header>
+
+<!-- CONTENIDO -->
+<section class="producto-detalle">
+
+<div class="producto-grid">
+
+<!-- IZQUIERDA -->
+<div class="info-producto">
+
+<h1 id="nombreProducto"></h1>
+<h2 id="precioProducto"></h2>
+
+<div class="acciones">
+
+<button class="btn-agregar" onclick="agregarProducto()">Agregar</button>
+
+<div class="cantidad">
+<button onclick="cambiarCantidad(-1)">-</button>
+<span id="cantidad">1</span>
+<button onclick="cambiarCantidad(1)">+</button>
+</div>
+
+</div>
+
+<hr>
+
+<h3>Descripción:</h3>
+
+<ul>
+<li><b>Contenido Neto:</b> 750 ml</li>
+<li><b>Sabor:</b> Producto original</li>
+<li><b>Tipo:</b> Alta calidad</li>
+<li><b>Presentación:</b Botella</li>
+</ul>
+
+</div>
+
+<!-- DERECHA -->
+<div class="img-producto">
+<img id="imagenProducto">
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-contenido">
+
+<div>
+<img src="imagenes/logo.png" width="80">
+<p>Valverde´s Minimarket</p>
+<p>📞 +51 986 620 3000</p>
+<p>📍 C. Maruri 382, Cusco 00800</p>
+</div>
+
+<div>
+<h4>Compra en</h4>
+<p>¿Cómo comprar?</p>
+<p>Formas de pago</p>
+<p>Preguntas frecuentes</p>
+</div>
+
+<div>
+<h4>Políticas</h4>
+<p>Términos y condiciones</p>
+<p>Privacidad</p>
+</div>
+
+<div>
+<h4>Síguenos</h4>
+<p>Facebook | Instagram | TikTok</p>
+</div>
+
+</div>
+</footer>
+
+</div>
+
+<script src="scripts/carrito_compras.js"></script>
+
+<script>
+let producto = JSON.parse(localStorage.getItem("productoSeleccionado"));
+
+document.getElementById("nombreProducto").innerText = producto.nombre;
+document.getElementById("precioProducto").innerText = "Precio: S/ " + producto.precio;
+document.getElementById("imagenProducto").src = producto.imagen;
+
+let cantidad = 1;
+
+function cambiarCantidad(valor){
+    cantidad += valor;
+    if(cantidad < 1) cantidad = 1;
+    document.getElementById("cantidad").innerText = cantidad;
+}
+
+function agregarProducto(){
+    for(let i=0; i<cantidad; i++){
+        agregarAlCarrito(producto.nombre, producto.precio);
+    }
+    actualizarContador();
+}
+</script>
+
+</body>
+</html>

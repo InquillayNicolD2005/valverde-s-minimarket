@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valverde´s Minimarket</title>
+
+<link rel="stylesheet" href="estilos/estilos_principales.css">
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<!-- HEADER -->
+<header class="header">
+    <div class="logo-contenedor">
+    <img src="imagenes/logo.png" alt="Logo Valverde´s" class="logo-img">
+    <h2 class="logo-texto">VALVERDE´S</h2>
+    </div>
+
+    <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="promociones.html">Ofertas</a>
+        <a href="acercadenosotros.html">Acerca de Nosotros</a>
+        <a href="login.html" id="usuarioHeader">Iniciar sesión</a>
+    </nav>
+
+    <a href="carrito.html" class="carrito">
+    🛒 <span id="contadorCarrito">0</span>
+</a>
+</header>
+
+<!-- BANNER -->
+<section class="banner">
+    <h1>Bienvenido a Minimarket Valverde´s</h1>
+
+    <div class="buscador">
+    <input type="text" id="buscadorInput" placeholder="¿Qué estás buscando hoy?">
+
+    <span class="clear" onclick="limpiarBusqueda()">✖</span>
+
+    <button onclick="buscar()">Buscar</button>
+
+    <section class="seccion" id="resultadosBusqueda" style="display:none;">
+    <div class="productos" id="contenedorResultados"></div>
+</section>
+
+    </div>
+</section>
+
+<!-- 🔥 CARRUSEL SEMANAL -->
+<section class="seccion">
+<h3 class="titulo">Lo mejor de la semana</h3>
+
+<div class="carrusel-semana">
+
+<div class="slide activo">
+<img src="imagenes/ofertas/oferta6.png">
+<h2>Ofertas en Bebidas</h2>
+</div>
+
+<div class="slide">
+<img src="imagenes/ofertas/oferta7.png">
+<h2>Variedad de Snacks</h2>
+</div>
+
+<div class="slide">
+<img src="imagenes/ofertas/oferta8.png">
+<h2>Abarrotes en Promoción</h2>
+</div>
+
+</div>
+</section>
+
+
+<!-- CATEGORÍAS -->
+<section class="seccion">
+<h3 class="titulo">CATEGORÍAS</h3>
+
+<div class="categorias">
+
+<a href="categoria_abarrotes.html" class="categoria">
+<img src="imagenes/catalogo/abarrotes.png">
+<p>Abarrotes</p>
+</a>
+
+<a href="categoria_bebidas.html" class="categoria">
+<img src="imagenes/catalogo/bebidas.png">
+<p>Bebidas</p>
+</a>
+
+<a href="categoria_licores.html" class="categoria">
+<img src="imagenes/catalogo/licores.webp">
+<p>Licores</p>
+</a>
+
+<a href="categoria_lacteos.html" class="categoria">
+<img src="imagenes/catalogo/lacteos.png">
+<p>Lácteos</p>
+</a>
+
+<a href="categoria_snacks.html" class="categoria">
+<img src="imagenes/catalogo/snacks.webp">
+<p>Snacks</p>
+</a>
+
+<a href="categoria_frutas.html" class="categoria">
+<img src="imagenes/catalogo/frutas_verduras.png">
+<p>Frutas y Verduras</p>
+</a>
+
+<a href="categoria_limpieza.html" class="categoria">
+<img src="imagenes/catalogo/limpieza_hogar.png">
+<p>Limpieza del hogar</p>
+</a>
+
+<a href="categoria_cuidado.html" class="categoria">
+<img src="imagenes/catalogo/cuidado_personal.png">
+<p>Cuidado Personal</p>
+</a>
+
+<a href="categoria_medicinas.html" class="categoria">
+<img src="imagenes/catalogo/medicinas.jpg">
+<p>Medicinas</p>
+</a>
+
+<a href="categoria_mascotas.html" class="categoria">
+<img src="imagenes/catalogo/alimento_mascotas.jpg">
+<p>Alimentos de Mascotas</p>
+</a>
+
+</div>
+</section>
+
+<!-- 🔥 CARRUSEL BEBIDAS -->
+<section class="seccion">
+<h3 class="titulo">Lo mejor en bebidas</h3>
+
+<div class="carrusel-box">
+<button onclick="mover('c1',-1)">‹</button>
+<div class="carrusel" id="c1">
+
+<div class="card" data-nombre="inka kola" data-categoria="bebidas">
+<img src="imagenes/bebidas/gaseosa_INCAKOLA_original.jpeg">
+<h4>INKA KOLA</h4>
+<p class="descripcion">Gaseosa Inka Kola<br>Botella 500 ml</p>
+<p class="precio">S/ 4.90</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Inka Kola',4.90, 'imagenes/bebidas/gaseosa_INCAKOLA_original.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="aloe bio" data-categoria="bebidas">
+<img src="imagenes/bebidas/aloe_BIO.jpeg">
+<h4>Aloe BIO</h4>
+<p class="descripcion">Gaseosa Aloe BIO<br>Botella 500 ml</p>
+<p class="precio">S/ 4.90</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Aloe BIO',4.90, 'imagenes/bebidas/aloe_BIO.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="coca cola" data-categoria="bebidas">
+<img src="imagenes/bebidas/gaseosa_COCACOLA_original.jpeg">
+<h4>Coca Cola</h4>
+<p class="descripcion">Gaseosa Coca Cola<br>Botella 500 ml</p>
+<p class="precio">S/ 4.90</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Coca Cola',4.90, 'imagenes/bebidas/gaseosa_COCACOLA_original.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="fanta" data-categoria="bebidas">
+<img src="imagenes/bebidas/gaseosa_FANTA_kolainglesa.jpeg">
+<h4>Fanta</h4>
+<p class="descripcion">Gaseosa Fanta<br>Botella 500 ml</p>
+<p class="precio">S/ 4.90</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Fanta',4.90, 'imagenes/bebidas/gaseosa_FANTA_kolainglesa.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="frugos citrus" data-categoria="bebidas">
+<img src="imagenes/bebidas/frugos_citrus.jpeg">
+<h4>Frugos Citrus</h4>
+<p class="descripcion">Gaseosa Frugos<br>Botella 500 ml</p>
+<p class="precio">S/ 4.90</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Frugos Citrus',4.90, 'imagenes/bebidas/frugos_citrus.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="guarana" data-categoria="bebidas">
+<img src="imagenes/bebidas/gaseosa_GUARANA.jpeg">
+<h4>Guaraná</h4>
+<p class="descripcion">Gaseosa Guaraná<br>Botella 500 ml</p>
+<p class="precio">S/ 4.90</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Guaraná',4.90, 'imagenes/bebidas/gaseosa_GUARANA.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="pepsi" data-categoria="bebidas">
+<img src="imagenes/bebidas/gaseosa_PEPSI.jpeg">
+<h4>Pepsi</h4>
+<p class="descripcion">Gaseosa Pepsi<br>Botella 500 ml</p>
+<p class="precio">S/ 4.90</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Pepsi',4.90, 'imagenes/bebidas/gaseosa_PEPSI.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="sprite" data-categoria="bebidas">
+<img src="imagenes/bebidas/gaseosa_SPRITE_limalimon.jpeg">
+<h4>Sprite</h4>
+<p class="descripcion">Gaseosa Sprite<br>Botella 500 ml</p>
+<p class="precio">S/ 4.90</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Sprite',4.90, 'imagenes/bebidas/gaseosa_SPRITE_limalimon.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="red bull" data-categoria="bebidas">
+<img src="imagenes/bebidas/energizante_REDBULL.jpeg">
+<h4>Red Bull</h4>
+<p class="descripcion">Bebida Energizante<br>Lata 250 ml</p>
+<p class="precio">S/ 9.90</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Red Bull',9.90, 'imagenes/bebidas/energizante_REDBULL.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="powerade" data-categoria="bebidas">
+<img src="imagenes/bebidas/rehidratante_POWERADE_multifrutas_1L.jpeg">
+<h4>Powerade</h4>
+<p class="descripcion">Bebida Rehidratante<br>Botella 1L</p>
+<p class="precio">S/ 5.90</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Powerade',5.90, 'imagenes/bebidas/rehidratante_POWERADE_multifrutas_1L.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+</div>    
+<button onclick="mover('c1',1)">›</button>
+</div>
+</section>
+
+<!-- 🔥 CARRUSEL LICORES -->
+<section class="seccion">
+<h3 class="titulo">Lo mejor en licores</h3>
+
+<div class="carrusel-box">
+<button onclick="mover('c2',-1)">‹</button>
+
+<div class="carrusel" id="c2">
+
+<div class="card" data-nombre="smirnoff" data-categoria="licores">
+<img src="imagenes/licores/licor_SMIRNOFF_original.jpeg">
+<h4>SMIRNOFF</h4>
+<p class="descripcion">Vodka Premium<br>Botella 750ml</p>
+<p class="precio">S/ 45.00</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Smirnoff',45.00, 'imagenes/licores/licor_SMIRNOFF_original.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="jagermeister" data-categoria="licores">
+<img src="imagenes/licores/licor_JAGERMEISTER.jpeg">
+<h4>JAGERMEISTER</h4>
+<p class="descripcion">Licor de Hierbas<br>Botella 750ml</p>
+<p class="precio">S/ 55.00</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Jagermeister',55.00, 'imagenes/licores/licor_JAGERMEISTER.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="baileys" data-categoria="licores">
+<img src="imagenes/licores/licor_BAILEYSEXPRESSO.jpeg">
+<h4>BAILEYS</h4>
+<p class="descripcion">Licor de Crema<br>Botella 750ml</p>
+<p class="precio">S/ 50.00</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Baileys',50.00, 'imagenes/licores/licor_BAILEYSEXPRESSO.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="disaronno" data-categoria="licores">
+<img src="imagenes/licores/licor_DISARONNO_700ml.jpeg">
+<h4>DISARONNO</h4>
+<p class="descripcion">Licor de Almendra<br>Botella 700ml</p>
+<p class="precio">S/ 48.00</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Disaronno',48.00, 'imagenes/licores/licor_DISARONNO_700ml.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="aperol" data-categoria="licores">
+<img src="imagenes/licores/licor_APEROL_750ml.jpeg">
+<h4>APEROL</h4>
+<p class="descripcion">Licor Aperitivo<br>Botella 750ml</p>
+<p class="precio">S/ 38.00</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Aperol',38.00, 'imagenes/licores/licor_APEROL_750ml.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="campari" data-categoria="licores">
+<img src="imagenes/licores/licor_CAMPARI_750ml.jpeg">
+<h4>CAMPARI</h4>
+<p class="descripcion">Licor Italiano<br>Botella 750ml</p>
+<p class="precio">S/ 42.00</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Campari',42.00, 'imagenes/licores/licor_CAMPARI_750ml.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="licor 43" data-categoria="licores">
+<img src="imagenes/licores/licor_LICOR43_700ml.jpeg">
+<h4>LICOR 43</h4>
+<p class="descripcion">Licor Español<br>Botella 700ml</p>
+<p class="precio">S/ 40.00</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Licor 43',40.00, 'imagenes/licores/licor_LICOR43_700ml.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="frangelico" data-categoria="licores">
+<img src="imagenes/licores/licordecrema_FRANGELICO_750ml.jpeg">
+<h4>FRANGELICO</h4>
+<p class="descripcion">Licor de Avellana<br>Botella 750ml</p>
+<p class="precio">S/ 52.00</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Frangelico',52.00, 'imagenes/licores/licordecrema_FRANGELICO_750ml.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="sarcay" data-categoria="licores">
+<img src="imagenes/licores/licordecrema_SARCAY_700ml.jpeg">
+<h4>SARCAY</h4>
+<p class="descripcion">Licor de Crema<br>Botella 700ml</p>
+<p class="precio">S/ 35.00</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Sarcay',35.00, 'imagenes/licores/licordecrema_SARCAY_700ml.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+</div>
+
+<button onclick="mover('c2',1)">›</button>
+</div>
+</section>
+
+<!-- 🔥 CARRUSEL ABARROTES -->
+<section class="seccion">
+<h3 class="titulo">Lo mejor en abarrotes</h3>
+
+<div class="carrusel-box">
+<button onclick="mover('c3',-1)">‹</button>
+
+<div class="carrusel" id="c3">
+
+<div class="card" data-nombre="arroz bells" data-categoria="abarrotes">
+<img src="imagenes/abarrotes/arroz_BELL'S_5kg.jpeg">
+<h4>ARROZ BELL'S</h4>
+<p class="descripcion">Arroz Grano Largo<br>Bolsa 5kg</p>
+<p class="precio">S/ 25.00</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Arroz Bell\'s',25.00, 'imagenes/abarrotes/arroz_BELL\'S_5kg.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="arroz costeño" data-categoria="abarrotes">
+<img src="imagenes/abarrotes/arroz_COSTEÑO_750g.jpeg">
+<h4>ARROZ COSTEÑO</h4>
+<p class="descripcion">Arroz Extra Añejo<br>750g</p>
+<p class="precio">S/ 5.50</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Arroz Costeño',5.50, 'imagenes/abarrotes/arroz_COSTEÑO_750g.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="aceite soyabells" data-categoria="abarrotes">
+<img src="imagenes/abarrotes/aceite_SOYABELL'S.jpeg">
+<h4>ACEITE SOYABELL'S</h4>
+<p class="descripcion">Aceite de Soya<br>Botella 1L</p>
+<p class="precio">S/ 11.50</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Aceite Soyabells',11.50, 'imagenes/abarrotes/aceite_SOYABELL\'S.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="aceite primor" data-categoria="abarrotes">
+<img src="imagenes/abarrotes/aceite_VEGETALPRIMOR.jpeg">
+<h4>ACEITE PRIMOR</h4>
+<p class="descripcion">Aceite Vegetal<br>Botella 1L</p>
+<p class="precio">S/ 12.50</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Aceite Primor',12.50, 'imagenes/abarrotes/aceite_VEGETALPRIMOR.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="fideos molitalia" data-categoria="abarrotes">
+<img src="imagenes/abarrotes/fideos_MOLITALIA_macarron.jpeg">
+<h4>FIDEOS MOLITALIA</h4>
+<p class="descripcion">Fideos Macarrón<br>250g</p>
+<p class="precio">S/ 2.50</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Fideos Molitalia',2.50, 'imagenes/abarrotes/fideos_MOLITALIA_macarron.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="fideos nicolini" data-categoria="abarrotes">
+<img src="imagenes/abarrotes/fideos_NICOLINI_spaghetti.jpeg">
+<h4>FIDEOS NICOLINI</h4>
+<p class="descripcion">Spaghetti<br>500g</p>
+<p class="precio">S/ 3.20</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Fideos Nicolini',3.20, 'imagenes/abarrotes/fideos_NICOLINI_spaghetti.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="harina benoti" data-categoria="abarrotes">
+<img src="imagenes/abarrotes/harina_BENOTI_sinpreparada_1kg.jpeg">
+<h4>HARINA BENOTI</h4>
+<p class="descripcion">Harina Sin Preparar<br>1kg</p>
+<p class="precio">S/ 4.00</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Harina Benoti',4.00, 'imagenes/abarrotes/harina_BENOTI_sinpreparada_1kg.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="harina molitalia" data-categoria="abarrotes">
+<img src="imagenes/abarrotes/harina_MOLITALIA_preparada_1kg.jpeg">
+<h4>HARINA MOLITALIA</h4>
+<p class="descripcion">Harina Preparada<br>1kg</p>
+<p class="precio">S/ 4.50</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Harina Molitalia',4.50, 'imagenes/abarrotes/harina_MOLITALIA_preparada_1kg.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+<div class="card" data-nombre="arroz integral" data-categoria="abarrotes">
+<img src="imagenes/abarrotes/arrozintegral_BELL'S_750g.jpeg">
+<h4>ARROZ INTEGRAL BELL'S</h4>
+<p class="descripcion">Arroz Integral<br>750g</p>
+<p class="precio">S/ 6.50</p>
+<div class="botones-card">
+<button onclick="agregarAlCarrito('Arroz Integral Bell\'s',6.50, 'imagenes/abarrotes/arrozintegral_BELL\'S_750g.jpeg')" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;">AGREGAR</button>
+</div>
+</div>
+
+</div>
+
+<button onclick="mover('c3',1)">›</button>
+</div>
+</section>
+
+<!-- FOOTER -->
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-contenido">
+
+<div>
+<img src="imagenes/logo.png" width="80">
+<p>Valverde´s Minimarket</p>
+<p>📞 +51 986 620 3000</p>
+<p>📍 C. Maruri 382, Cusco 00800</p>
+</div>
+
+<div>
+<h4>Compra en</h4>
+<p>¿Cómo comprar?</p>
+<p>Formas de pago</p>
+<p>Preguntas frecuentes</p>
+</div>
+
+<div>
+<h4>Políticas</h4>
+<p>Términos y condiciones</p>
+<p>Privacidad</p>
+</div>
+
+<div>
+<h4>Síguenos</h4>
+<p>Facebook | Instagram | TikTok</p>
+</div>
+
+</div>
+</footer>
+
+<button class="subir" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+</div>
+
+<script src="scripts/carrito_compras.js"></script>
+
+<!-- BUSCADOR FUNCION ENTER -->
+<script>
+document.getElementById("buscadorInput").addEventListener("keypress", function(e){
+    if(e.key === "Enter"){
+        buscar();
+    }
+});
+</script>
+<script>
+function verificarSesion(){
+    let user = JSON.parse(localStorage.getItem("usuarioLogeado"));
+
+    let header = document.getElementById("usuarioHeader");
+
+    if(user){
+        header.innerHTML = "👤 " + user.nombre + " | Cerrar sesión";
+        header.onclick = cerrarSesion;
+    }else{
+        header.innerHTML = "Iniciar sesión";
+        header.href = "login.html";
+    }
+}
+
+function cerrarSesion(){
+    localStorage.removeItem("usuarioLogeado");
+    window.location.reload();
+}
+
+// ejecutar
+verificarSesion();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<link rel="stylesheet" href="estilos/estilos_principales.css">
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<header class="header">
+    <div class="logo-contenedor">
+    <img src="imagenes/logo.png" alt="Logo Valverde´s" class="logo-img">
+    <h2 class="logo-texto">VALVERDE´S</h2>
+    </div>
+
+    <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="promociones.html">Ofertas</a>
+        <a href="acercadenosotros.html">Acerca de Nosotros</a>
+        <a href="#" id="usuarioHeader">Iniciar sesión</a>
+    </nav>
+
+    <a href="carrito.html" class="carrito">
+    🛒 <span id="contadorCarrito">0</span>
+</a>
+</header>
+
+<div class="formulario">
+<h2>Iniciar Sesión</h2>
+
+<form action="login.php" method="POST">
+<input type="text" name="usuario" placeholder="Usuario" required>
+<input type="password" name="password" placeholder="Contraseña" required>
+<button type="submit">Registrarse</button>
+</form>  
+
+</body>
+</html>

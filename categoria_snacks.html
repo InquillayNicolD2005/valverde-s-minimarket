@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snacks</title>
+<link rel="stylesheet" href="estilos/estilos_principales.css">
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<!-- HEADER -->
+<header class="header">
+    <div class="logo-contenedor">
+        <img src="imagenes/logo.png" alt="Logo Valverde´s" class="logo-img">
+        <h2 class="logo-texto">VALVERDE´S</h2>
+    </div>
+
+    <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="promociones.html">Ofertas</a>
+        <a href="acercadenosotros.html">Acerca de</a>
+        <a href="login.html" id="usuarioHeader">Iniciar sesión</a>
+    </nav>
+
+    <a href="carrito.html" class="carrito">
+        🛒 <span id="contadorCarrito">0</span>
+    </a>
+</header>
+
+<!-- TITULO + BUSCADOR -->
+<section class="seccion">
+    <h2 class="titulo">SNACKS</h2>
+
+    <div class="buscador">
+        <input type="text" id="buscadorCategoria" placeholder="Buscar producto...">
+        <button onclick="buscarCategoria()">Buscar</button>
+    </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section class="productos">
+
+<!-- CHEETOS -->
+<div class="card-pro" data-nombre="cheetos"><div class="card-img"><img src="imagenes/snacks/snack_CHEETOS_picantes_90g.jpeg"></div><div class="card-info"><h4>CHEETOS PICANTES</h4><p class="descripcion">Bolsa 90g</p><span class="precio">S/ 3.50</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Cheetos Picantes',3.5,'imagenes/snacks/snack_CHEETOS_picantes_90g.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Cheetos Picantes',3.5,'imagenes/snacks/snack_CHEETOS_picantes_90g.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- CHEETOS QUESO -->
+<div class="card-pro" data-nombre="cheetos queso"><div class="card-img"><img src="imagenes/snacks/snack_CHEETOS_queso_90g.jpeg"></div><div class="card-info"><h4>CHEETOS QUESO</h4><p class="descripcion">Bolsa 90g</p><span class="precio">S/ 3.50</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Cheetos Queso',3.5,'imagenes/snacks/snack_CHEETOS_queso_90g.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Cheetos Queso',3.5,'imagenes/snacks/snack_CHEETOS_queso_90g.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- CHEESETRIS -->
+<div class="card-pro" data-nombre="cheesetris"><div class="card-img"><img src="imagenes/snacks/snack_CHEESETRIS.jpeg"></div><div class="card-info"><h4>CHEESETRIS</h4><p class="descripcion">Bolsa 90g</p><span class="precio">S/ 3.20</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Cheesetris',3.2,'imagenes/snacks/snack_CHEESETRIS.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Cheesetris',3.2,'imagenes/snacks/snack_CHEESETRIS.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- CHEESETOS -->
+<div class="card-pro" data-nombre="cheesetos"><div class="card-img"><img src="imagenes/snacks/snack_CHEESETOS.jpeg"></div><div class="card-info"><h4>CHEESETOS</h4><p class="descripcion">Bolsa 90g</p><span class="precio">S/ 3.20</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Cheesetos',3.2,'imagenes/snacks/snack_CHEESETOS.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Cheesetos',3.2,'imagenes/snacks/snack_CHEESETOS.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- CHOCHO -->
+<div class="card-pro" data-nombre="chocho"><div class="card-img"><img src="imagenes/snacks/snack_CHOCHO.jpeg"></div><div class="card-info"><h4>CHOCHO</h4><p class="descripcion">Bolsa 90g</p><span class="precio">S/ 2.50</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Chocho',2.5,'imagenes/snacks/snack_CHOCHO.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Chocho',2.5,'imagenes/snacks/snack_CHOCHO.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- CRACKELET -->
+<div class="card-pro" data-nombre="crackelet"><div class="card-img"><img src="imagenes/snacks/snack_CRACKELET.jpeg"></div><div class="card-info"><h4>CRACKELET</h4><p class="descripcion">Bolsa 90g</p><span class="precio">S/ 3.00</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Crackelet',3.0,'imagenes/snacks/snack_CRACKELET.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Crackelet',3.0,'imagenes/snacks/snack_CRACKELET.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- IBÉRICA -->
+<div class="card-pro" data-nombre="iberica"><div class="card-img"><img src="imagenes/snacks/snack_IBERICACAJA.jpeg"></div><div class="card-info"><h4>IBÉRICA CAJA</h4><p class="descripcion">Caja</p><span class="precio">S/ 4.50</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Ibérica',4.5,'imagenes/snacks/snack_IBERICACAJA.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Ibérica',4.5,'imagenes/snacks/snack_IBERICACAJA.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- MAMALAMA HIERBAS -->
+<div class="card-pro" data-nombre="mamalama hierbas"><div class="card-img"><img src="imagenes/snacks/snack_MAMALAMA_finashierbas_90g.jpeg"></div><div class="card-info"><h4>MAMALAMA HIERBAS</h4><p class="descripcion">Bolsa 90g</p><span class="precio">S/ 3.80</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Mamalama Hierbas',3.8,'imagenes/snacks/snack_MAMALAMA_finashierbas_90g.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Mamalama Hierbas',3.8,'imagenes/snacks/snack_MAMALAMA_finashierbas_90g.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- MAMALAMA QUINUA -->
+<div class="card-pro" data-nombre="mamalama quinua"><div class="card-img"><img src="imagenes/snacks/snack_MAMALAMA_quinua_90g.jpeg"></div><div class="card-info"><h4>MAMALAMA QUINUA</h4><p class="descripcion">Bolsa 90g</p><span class="precio">S/ 4.00</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Mamalama Quinua',4.0,'imagenes/snacks/snack_MAMALAMA_quinua_90g.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Mamalama Quinua',4.0,'imagenes/snacks/snack_MAMALAMA_quinua_90g.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- MAMALAMA SAL DE MARAS -->
+<div class="card-pro" data-nombre="mamalama sal"><div class="card-img"><img src="imagenes/snacks/snack_MAMALAMA_saldemaras_90g.jpeg"></div><div class="card-info"><h4>MAMALAMA SAL DE MARAS</h4><p class="descripcion">Bolsa 90g</p><span class="precio">S/ 3.80</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Mamalama Sal',3.8,'imagenes/snacks/snack_MAMALAMA_saldemaras_90g.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Mamalama Sal',3.8,'imagenes/snacks/snack_MAMALAMA_saldemaras_90g.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- NATUCHIPS -->
+<div class="card-pro" data-nombre="natuchips"><div class="card-img"><img src="imagenes/snacks/snack_NATUCHIPS_135g.jpeg"></div><div class="card-info"><h4>NATUCHIPS</h4><p class="descripcion">Bolsa 135g</p><span class="precio">S/ 4.50</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Natuchips',4.5,'imagenes/snacks/snack_NATUCHIPS_135g.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Natuchips',4.5,'imagenes/snacks/snack_NATUCHIPS_135g.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- PIQUEOSNAX -->
+<div class="card-pro" data-nombre="piqueosnax"><div class="card-img"><img src="imagenes/snacks/snack_PIQUEOSNAX.jpeg"></div><div class="card-info"><h4>PIQUEOSNAX</h4><p class="descripcion">Bolsa 90g</p><span class="precio">S/ 3.20</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Piqueosnax',3.2,'imagenes/snacks/snack_PIQUEOSNAX.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Piqueosnax',3.2,'imagenes/snacks/snack_PIQUEOSNAX.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- PIQUEOSNAX QUESO -->
+<div class="card-pro" data-nombre="piqueosnax queso"><div class="card-img"><img src="imagenes/snacks/snack_PIQUEOSNAX_saborqueso.jpeg"></div><div class="card-info"><h4>PIQUEOSNAX QUESO</h4><p class="descripcion">Bolsa 90g</p><span class="precio">S/ 3.20</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Piqueosnax Queso',3.2,'imagenes/snacks/snack_PIQUEOSNAX_saborqueso.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Piqueosnax Queso',3.2,'imagenes/snacks/snack_PIQUEOSNAX_saborqueso.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- PREZLET -->
+<div class="card-pro" data-nombre="prezlet"><div class="card-img"><img src="imagenes/snacks/snack_PREZLET_200g.jpeg"></div><div class="card-info"><h4>PREZLET</h4><p class="descripcion">Bolsa 200g</p><span class="precio">S/ 5.00</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Prezlet',5.0,'imagenes/snacks/snack_PREZLET_200g.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Prezlet',5.0,'imagenes/snacks/snack_PREZLET_200g.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- PROTEINSNACK -->
+<div class="card-pro" data-nombre="proteinsnack"><div class="card-img"><img src="imagenes/snacks/snack_PROTEINSNACK.jpeg"></div><div class="card-info"><h4>PROTEINSNACK</h4><p class="descripcion">Barrita</p><span class="precio">S/ 4.50</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Proteinsnack',4.5,'imagenes/snacks/snack_PROTEINSNACK.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Proteinsnack',4.5,'imagenes/snacks/snack_PROTEINSNACK.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- PROTEINSNACK BANANA -->
+<div class="card-pro" data-nombre="proteinsnack banana"><div class="card-img"><img src="imagenes/snacks/snack_PROTEINSNACK_banana.jpeg"></div><div class="card-info"><h4>PROTEINSNACK BANANA</h4><p class="descripcion">Barrita</p><span class="precio">S/ 4.50</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Proteinsnack Banana',4.5,'imagenes/snacks/snack_PROTEINSNACK_banana.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Proteinsnack Banana',4.5,'imagenes/snacks/snack_PROTEINSNACK_banana.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- PROTEINSNACK MANZANA -->
+<div class="card-pro" data-nombre="proteinsnack manzana"><div class="card-img"><img src="imagenes/snacks/snack_PROTEINSNACK_manzana.jpeg"></div><div class="card-info"><h4>PROTEINSNACK MANZANA</h4><p class="descripcion">Barrita</p><span class="precio">S/ 4.50</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Proteinsnack Manzana',4.5,'imagenes/snacks/snack_PROTEINSNACK_manzana.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Proteinsnack Manzana',4.5,'imagenes/snacks/snack_PROTEINSNACK_manzana.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- PUFF FRESA -->
+<div class="card-pro" data-nombre="puff fresa"><div class="card-img"><img src="imagenes/snacks/snack_PUFF_fresa.jpeg"></div><div class="card-info"><h4>PUFF FRESA</h4><p class="descripcion">Bolsa 50g</p><span class="precio">S/ 3.00</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Puff Fresa',3.0,'imagenes/snacks/snack_PUFF_fresa.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Puff Fresa',3.0,'imagenes/snacks/snack_PUFF_fresa.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- PUFF MANZANA -->
+<div class="card-pro" data-nombre="puff manzana"><div class="card-img"><img src="imagenes/snacks/snack_PUFF_manzana.jpeg"></div><div class="card-info"><h4>PUFF MANZANA</h4><p class="descripcion">Bolsa 50g</p><span class="precio">S/ 3.00</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Puff Manzana',3.0,'imagenes/snacks/snack_PUFF_manzana.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Puff Manzana',3.0,'imagenes/snacks/snack_PUFF_manzana.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- SNYDER'S -->
+<div class="card-pro" data-nombre="snyders"><div class="card-img"><img src="imagenes/snacks/snack_SNYDER'S.jpeg"></div><div class="card-info"><h4>SNYDER'S</h4><p class="descripcion">Bolsa 100g</p><span class="precio">S/ 4.00</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Snyder''s',4.0,'imagenes/snacks/snack_SNYDER''S.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Snyder''s',4.0,'imagenes/snacks/snack_SNYDER''S.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- TORTESS -->
+<div class="card-pro" data-nombre="tortess"><div class="card-img"><img src="imagenes/snacks/snack_TORTESS_71g.jpeg"></div><div class="card-info"><h4>TORTESS</h4><p class="descripcion">Bolsa 71g</p><span class="precio">S/ 3.20</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Tortess',3.2,'imagenes/snacks/snack_TORTESS_71g.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Tortess',3.2,'imagenes/snacks/snack_TORTESS_71g.jpeg')">👁 Ver</button></div></div></div>
+
+<!-- YUCAZABA -->
+<div class="card-pro" data-nombre="yucazaba"><div class="card-img"><img src="imagenes/snacks/snack_YUCAZABA.jpeg"></div><div class="card-info"><h4>YUCAZABA</h4><p class="descripcion">Bolsa 100g</p><span class="precio">S/ 3.50</span><div class="botones-card"><button class="btn-carrito" onclick="agregarAlCarrito('Yucazaba',3.5,'imagenes/snacks/snack_YUCAZABA.jpeg')">Agregar</button><button class="btn-ver" onclick="verProducto('Yucazaba',3.5,'imagenes/snacks/snack_YUCAZABA.jpeg')">👁 Ver</button></div></div></div>
+
+</section>
+
+<script src="scripts/carrito_compras.js"></script>
+
+<script>
+function buscarCategoria(){
+    let input = document.getElementById("buscadorCategoria").value.toLowerCase();
+
+    document.querySelectorAll(".card-pro").forEach(p=>{
+        let nombre = p.getAttribute("data-nombre");
+        p.style.display = nombre.includes(input) ? "block" : "none";
+    });
+}
+</script>
+
+<script>
+function verificarSesion(){
+    let user = JSON.parse(localStorage.getItem("usuarioLogeado"));
+
+    let header = document.getElementById("usuarioHeader");
+
+    if(user){
+        header.innerHTML = "👤 " + user.nombre + " | Cerrar sesión";
+        header.onclick = cerrarSesion;
+    }else{
+        header.innerHTML = "Iniciar sesión";
+        header.href = "login.html";
+    }
+}
+
+function cerrarSesion(){
+    localStorage.removeItem("usuarioLogeado");
+    window.location.reload();
+}
+
+// ejecutar
+verificarSesion();
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-contenido">
+
+<div>
+<img src="imagenes/logo.png" width="80">
+<p>Valverde´s Minimarket</p>
+<p>📞 +51 986 620 3000</p>
+<p>📍 C. Maruri 382, Cusco 00800</p>
+</div>
+
+<div>
+<h4>Compra en</h4>
+<p>¿Cómo comprar?</p>
+<p>Formas de pago</p>
+<p>Preguntas frecuentes</p>
+</div>
+
+<div>
+<h4>Políticas</h4>
+<p>Términos y condiciones</p>
+<p>Privacidad</p>
+</div>
+
+<div>
+<h4>Síguenos</h4>
+<p>Facebook | Instagram | TikTok</p>
+</div>
+
+</div>
+</footer>
+
+<button class="subir" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+</div>
+
+</body>
+</html>

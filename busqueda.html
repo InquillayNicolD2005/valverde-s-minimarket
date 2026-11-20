@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resultados de Búsqueda</title>
+
+<link rel="stylesheet" href="estilos/estilos_principales.css">
+
+<style>
+.resultados-info {
+    padding: 20px;
+    background: #f5f5f5;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.resultados-info p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.sin-resultados {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+.sin-resultados h2 {
+    color: #2e7d32;
+    font-size: 24px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<header class="header">
+<h2 class="logo">VALVERDE´S</h2>
+
+<nav class="menu">
+<a href="index.html">Inicio</a>
+<a href="promociones.html">Ofertas</a>
+<a href="acercadenosotros.html">Acerca de Nosotros</a>
+<a href="login.html" id="usuarioHeader">Iniciar sesión</a>
+</nav>
+
+<a href="carrito.html" class="carrito">
+🛒 <span id="contadorCarrito">0</span>
+</a>
+</header>
+
+<!-- BÚSQUEDA -->
+<section class="banner" style="padding: 40px;">
+<h1>Resultados de Búsqueda</h1>
+
+<div class="buscador">
+<input type="text" id="buscadorInput" placeholder="¿Qué estás buscando?" value="">
+<button onclick="buscarProductos()">Buscar</button>
+</div>
+</section>
+
+<!-- INFORMACIÓN -->
+<div class="resultados-info">
+<p><b>Búsqueda:</b> <span id="terminoBusqueda"></span></p>
+<p><b>Resultados encontrados:</b> <span id="cantidadResultados">0</span></p>
+</div>
+
+<!-- PRODUCTOS -->
+<section class="productos" id="contenedorResultados"></section>
+
+<!-- SIN RESULTADOS -->
+<div class="sin-resultados" id="sinResultados" style="display: none;">
+<h2>No se encontraron productos</h2>
+<p>Intenta con otra búsqueda o revisa las categorías</p>
+<a href="index.html" style="background: #2e7d32; color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; display: inline-block; margin-top: 20px;">Volver al Inicio</a>
+</div>
+
+<!-- BOTÓN SCROLL TOP -->
+<button class="btn-scroll-top" id="btnScrollTop" onclick="scrollToTop()">↑</button>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-contenido">
+<div>
+<img src="imagenes/logo.png" width="80">
+<p>Valverde´s Minimarket</p>
+<p>📞 +51 986 620 3000</p>
+<p>📍 C. Maruri 382, Cusco 00800</p>
+</div>
+<div>
+<h4>Compra en</h4>
+<p>¿Cómo comprar?</p>
+<p>Formas de pago</p>
+<p>Preguntas frecuentes</p>
+</div>
+<div>
+<h4>Políticas</h4>
+<p>Términos y condiciones</p>
+<p>Privacidad</p>
+</div>
+<div>
+<h4>Síguenos</h4>
+<p>Facebook | Instagram | TikTok</p>
+</div>
+</div>
+</footer>
+
+<script src="scripts/carrito_compras.js"></script>
+
+<script>
+// Base de datos de todos los productos
+const todosProductos = [
+    // BEBIDAS
+    { nombre: 'Inka Kola', precio: 4.90, imagen: 'imagenes/bebidas/gaseosa_INCAKOLA_original.jpeg', categoria: 'bebidas', descripcion: 'Gaseosa Inka Kola. Botella 500ml' },
+    { nombre: 'Aloe BIO', precio: 4.90, imagen: 'imagenes/bebidas/aloe_BIO.jpeg', categoria: 'bebidas', descripcion: 'Gaseosa Aloe BIO. Botella 500ml' },
+    { nombre: 'Coca Cola', precio: 4.90, imagen: 'imagenes/bebidas/gaseosa_COCACOLA_original.jpeg', categoria: 'bebidas', descripcion: 'Gaseosa Coca Cola. Botella 500ml' },
+    { nombre: 'Fanta', precio: 4.90, imagen: 'imagenes/bebidas/gaseosa_FANTA_kolainglesa.jpeg', categoria: 'bebidas', descripcion: 'Gaseosa Fanta. Botella 500ml' },
+    { nombre: 'Pepsi', precio: 4.90, imagen: 'imagenes/bebidas/gaseosa_PEPSI.jpeg', categoria: 'bebidas', descripcion: 'Gaseosa Pepsi. Botella 500ml' },
+    { nombre: 'Sprite', precio: 4.90, imagen: 'imagenes/bebidas/gaseosa_SPRITE_limalimon.jpeg', categoria: 'bebidas', descripcion: 'Gaseosa Sprite. Botella 500ml' },
+    { nombre: 'Red Bull', precio: 9.90, imagen: 'imagenes/bebidas/energizante_REDBULL.jpeg', categoria: 'bebidas', descripcion: 'Bebida Energizante. Lata 250ml' },
+    { nombre: 'Powerade', precio: 5.90, imagen: 'imagenes/bebidas/rehidratante_POWERADE_multifrutas_1L.jpeg', categoria: 'bebidas', descripcion: 'Bebida Rehidratante. Botella 1L' },
+    
+    // LICORES
+    { nombre: 'Smirnoff', precio: 45.00, imagen: 'imagenes/licores/licor_SMIRNOFF_original.jpeg', categoria: 'licores', descripcion: 'Vodka Premium. Botella 750ml' },
+    { nombre: 'Jagermeister', precio: 55.00, imagen: 'imagenes/licores/licor_JAGERMEISTER.jpeg', categoria: 'licores', descripcion: 'Licor de Hierbas. Botella 750ml' },
+    { nombre: 'Baileys', precio: 50.00, imagen: 'imagenes/licores/licor_BAILEYSEXPRESSO.jpeg', categoria: 'licores', descripcion: 'Licor de Crema. Botella 750ml' },
+    { nombre: 'Disaronno', precio: 48.00, imagen: 'imagenes/licores/licor_DISARONNO_700ml.jpeg', categoria: 'licores', descripcion: 'Licor de Almendra. Botella 700ml' },
+    { nombre: 'Aperol', precio: 38.00, imagen: 'imagenes/licores/licor_APEROL_750ml.jpeg', categoria: 'licores', descripcion: 'Licor Aperitivo. Botella 750ml' },
+    { nombre: 'Campari', precio: 42.00, imagen: 'imagenes/licores/licor_CAMPARI_750ml.jpeg', categoria: 'licores', descripcion: 'Licor Italiano. Botella 750ml' },
+    
+    // ABARROTES
+    { nombre: 'Arroz Bell\'s', precio: 25.00, imagen: 'imagenes/abarrotes/arroz_BELL\'S_5kg.jpeg', categoria: 'abarrotes', descripcion: 'Arroz Grano Largo. Bolsa 5kg' },
+    { nombre: 'Arroz Costeño', precio: 5.50, imagen: 'imagenes/abarrotes/arroz_COSTEÑO_750g.jpeg', categoria: 'abarrotes', descripcion: 'Arroz Extra Añejo. 750g' },
+    { nombre: 'Aceite Soyabells', precio: 11.50, imagen: 'imagenes/abarrotes/aceite_SOYABELL\'S.jpeg', categoria: 'abarrotes', descripcion: 'Aceite de Soya. Botella 1L' },
+    { nombre: 'Aceite Primor', precio: 12.50, imagen: 'imagenes/abarrotes/aceite_VEGETALPRIMOR.jpeg', categoria: 'abarrotes', descripcion: 'Aceite Vegetal. Botella 1L' },
+    { nombre: 'Fideos Molitalia', precio: 2.50, imagen: 'imagenes/abarrotes/fideos_MOLITALIA_macarron.jpeg', categoria: 'abarrotes', descripcion: 'Fideos Macarrón. 250g' },
+    { nombre: 'Fideos Nicolini', precio: 3.20, imagen: 'imagenes/abarrotes/fideos_NICOLINI_spaghetti.jpeg', categoria: 'abarrotes', descripcion: 'Spaghetti. 500g' },
+    { nombre: 'Harina Benoti', precio: 4.00, imagen: 'imagenes/abarrotes/harina_MOLITALIA_preparada_1kg.jpeg', categoria: 'abarrotes', descripcion: 'Harina. 1kg' },
+    { nombre: 'Harina Molitalia', precio: 4.50, imagen: 'imagenes/productos/harina2.jpg', categoria: 'abarrotes', descripcion: 'Harina Preparada. 1kg' },
+    
+    // LÁCTEOS
+    { nombre: 'Leche Gloria', precio: 4.50, imagen: 'imagenes/lacteos/leche_GLORIA.jpeg', categoria: 'lacteos', descripcion: 'Leche Entera. Caja 1L' },
+    { nombre: 'Leche Gloria Light', precio: 4.80, imagen: 'imagenes/lacteos/leche_GLORIA_light.jpeg', categoria: 'lacteos', descripcion: 'Leche Baja en Grasa. Caja 1L' },
+    { nombre: 'Leche Gloria Niños', precio: 5.20, imagen: 'imagenes/lacteos/leche_GLORIA_niños.jpeg', categoria: 'lacteos', descripcion: 'Leche para Niños. Caja 1L' },
+    { nombre: 'Leche Gloria Polvo', precio: 12.50, imagen: 'imagenes/lacteos/leche_GLORIA_polvo.jpeg', categoria: 'lacteos', descripcion: 'Leche en Polvo. Bolsa 400g' },
+    { nombre: 'Leche Bells Entera', precio: 4.30, imagen: 'imagenes/lacteos/leche_BELLS_entera.jpeg', categoria: 'lacteos', descripcion: 'Leche Entera. Caja 1L' },
+    { nombre: 'Leche Bells Light', precio: 4.60, imagen: 'imagenes/lacteos/leche_BELLS_light.jpeg', categoria: 'lacteos', descripcion: 'Leche Baja en Grasa. Caja 1L' },
+    { nombre: 'Leche Laive Sin Lactosa', precio: 6.50, imagen: 'imagenes/lacteos/leche_LAIVE_sinlactosa.jpeg', categoria: 'lacteos', descripcion: 'Leche Sin Lactosa. Caja 1L' },
+    { nombre: 'Leche Condensada Gloria', precio: 3.80, imagen: 'imagenes/lacteos/lechecondensada_GLORIA.png', categoria: 'lacteos', descripcion: 'Leche Condensada. Lata 400g' },
+    { nombre: 'Leche Condensada Bells', precio: 3.60, imagen: 'imagenes/lacteos/lechecondensada_BELLS.jpeg', categoria: 'lacteos', descripcion: 'Leche Condensada. Lata 400g' }
+];
+
+// Obtener parámetro de búsqueda desde URL
+const params = new URLSearchParams(window.location.search);
+const termino = params.get('q') || '';
+
+// Buscar productos
+function buscarProductos() {
+    const input = document.getElementById('buscadorInput').value.toLowerCase();
+    
+    if(!input.trim()){
+        alert('Por favor escribe algo para buscar');
+        return;
+    }
+    
+    // Redirigir a la búsqueda
+    window.location.href = 'busqueda.html?q=' + encodeURIComponent(input);
+}
+
+// Mostrar resultados
+function mostrarResultados() {
+    const input = termino.toLowerCase();
+    const resultados = todosProductos.filter(p => p.nombre.toLowerCase().includes(input));
+    
+    document.getElementById('terminoBusqueda').textContent = termino;
+    document.getElementById('cantidadResultados').textContent = resultados.length;
+    
+    const contenedor = document.getElementById('contenedorResultados');
+    const sinResultados = document.getElementById('sinResultados');
+    
+    if(resultados.length === 0) {
+        contenedor.style.display = 'none';
+        sinResultados.style.display = 'block';
+        return;
+    }
+    
+    contenedor.style.display = 'grid';
+    sinResultados.style.display = 'none';
+    contenedor.innerHTML = '';
+    
+    resultados.forEach(p => {
+        contenedor.innerHTML += `
+        <div class="card-pro" data-nombre="${p.nombre.toLowerCase()}">
+            <div class="card-img"><img src="${p.imagen}"></div>
+            <div class="card-info">
+                <h4>${p.nombre}</h4>
+                <p class="descripcion">${p.descripcion}</p>
+                <span class="precio">S/ ${p.precio.toFixed(2)}</span>
+                <button class="btn-carrito" onclick="agregarAlCarrito('${p.nombre}',${p.precio},'${p.imagen}')">AGREGAR</button>
+                <button class="btn-ver" onclick="verProducto('${p.nombre}',${p.precio},'${p.imagen}','${p.descripcion}')">VER</button>
+            </div>
+        </div>
+        `;
+    });
+}
+
+// Botón scroll to top
+const btnScrollTop = document.getElementById('btnScrollTop');
+
+window.addEventListener('scroll', () => {
+    if(window.pageYOffset > 300){
+        btnScrollTop.classList.add('visible');
+    } else {
+        btnScrollTop.classList.remove('visible');
+    }
+});
+
+function scrollToTop(){
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// Enter en buscador
+document.getElementById('buscadorInput').addEventListener('keypress', function(e){
+    if(e.key === 'Enter'){
+        buscarProductos();
+    }
+});
+
+// Mostrar resultados al cargar
+window.addEventListener('load', () => {
+    mostrarResultados();
+    actualizarContador();
+    verificarSesion();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frutas y Verduras - Valverdes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="imagenes/logo.png" alt="Valverdes">
+            </div>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Buscar productos..." class="search-input">
+                <button class="search-btn">🔍 Buscar</button>
+            </div>
+            <div class="header-links">
+                <a href="login.html" id="usuarioHeader">👤 Inicia Sesión</a>
+                <a href="carrito.html">🛒 Carrito</a>
+            </div>
+        </div>
+    </header>
+
+    <nav class="breadcrumb">
+        <a href="index.html">Inicio</a> > <span>Frutas y Verduras</span>
+    </nav>
+
+    <main class="container">
+        <h1>Frutas y Verduras</h1>
+        <div class="products-grid" id="productsContainer">
+            <div class="card-pro" data-nombre="BLUEBERRIES">
+                <div class="card-img"><img src="imagenes/frutas_verduras/fruta_BLUEBERRIES.jpeg" alt="BLUEBERRIES"></div>
+                <div class="card-info">
+                    <h4>BLUEBERRIES</h4>
+                    <p class="descripcion">Arándanos frescos<br>Bandeja 500g</p>
+                    <span class="precio">S/ 12.50</span>
+                    <div class="card-buttons">
+                        <button class="btn-carrito">🛒 Agregar</button>
+                        <button class="btn-ver">👁️ Ver</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-pro" data-nombre="GRANADILLA">
+                <div class="card-img"><img src="imagenes/frutas_verduras/fruta_GRANADILLA.jpeg" alt="GRANADILLA"></div>
+                <div class="card-info">
+                    <h4>GRANADILLA</h4>
+                    <p class="descripcion">Granadilla dulce<br>1kg</p>
+                    <span class="precio">S/ 8.00</span>
+                    <div class="card-buttons">
+                        <button class="btn-carrito">🛒 Agregar</button>
+                        <button class="btn-ver">👁️ Ver</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-pro" data-nombre="MANZANA">
+                <div class="card-img"><img src="imagenes/frutas_verduras/fruta_MANZANA.jpeg" alt="MANZANA"></div>
+                <div class="card-info">
+                    <h4>MANZANA</h4>
+                    <p class="descripcion">Manzana roja<br>1kg</p>
+                    <span class="precio">S/ 4.50</span>
+                    <div class="card-buttons">
+                        <button class="btn-carrito">🛒 Agregar</button>
+                        <button class="btn-ver">👁️ Ver</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-pro" data-nombre="NARANJA">
+                <div class="card-img"><img src="imagenes/frutas_verduras/fruta_NARANJA.jpeg" alt="NARANJA"></div>
+                <div class="card-info">
+                    <h4>NARANJA</h4>
+                    <p class="descripcion">Naranja jugosa<br>1kg</p>
+                    <span class="precio">S/ 5.80</span>
+                    <div class="card-buttons">
+                        <button class="btn-carrito">🛒 Agregar</button>
+                        <button class="btn-ver">👁️ Ver</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-pro" data-nombre="PLATANO">
+                <div class="card-img"><img src="imagenes/frutas_verduras/fruta_PLATANO.jpeg" alt="PLATANO"></div>
+                <div class="card-info">
+                    <h4>PLÁTANO</h4>
+                    <p class="descripcion">Plátano amarillo<br>1kg</p>
+                    <span class="precio">S/ 3.20</span>
+                    <div class="card-buttons">
+                        <button class="btn-carrito">🛒 Agregar</button>
+                        <button class="btn-ver">👁️ Ver</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-pro" data-nombre="BERENJENA">
+                <div class="card-img"><img src="imagenes/frutas_verduras/verdura_BERENJENA.jpeg" alt="BERENJENA"></div>
+                <div class="card-info">
+                    <h4>BERENJENA</h4>
+                    <p class="descripcion">Berenjena fresca<br>1kg</p>
+                    <span class="precio">S/ 6.50</span>
+                    <div class="card-buttons">
+                        <button class="btn-carrito">🛒 Agregar</button>
+                        <button class="btn-ver">👁️ Ver</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-pro" data-nombre="BROCOLI">
+                <div class="card-img"><img src="imagenes/frutas_verduras/verdura_BROCOLI.jpeg" alt="BROCOLI"></div>
+                <div class="card-info">
+                    <h4>BRÓCOLI</h4>
+                    <p class="descripcion">Brócoli fresco<br>500g</p>
+                    <span class="precio">S/ 7.20</span>
+                    <div class="card-buttons">
+                        <button class="btn-carrito">🛒 Agregar</button>
+                        <button class="btn-ver">👁️ Ver</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-pro" data-nombre="CEBOLLA">
+                <div class="card-img"><img src="imagenes/frutas_verduras/verdura_CEBOLLA.jpeg" alt="CEBOLLA"></div>
+                <div class="card-info">
+                    <h4>CEBOLLA</h4>
+                    <p class="descripcion">Cebolla roja<br>1kg</p>
+                    <span class="precio">S/ 2.10</span>
+                    <div class="card-buttons">
+                        <button class="btn-carrito">🛒 Agregar</button>
+                        <button class="btn-ver">👁️ Ver</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-pro" data-nombre="LIMON">
+                <div class="card-img"><img src="imagenes/frutas_verduras/verdura_LIMON.jpeg" alt="LIMON"></div>
+                <div class="card-info">
+                    <h4>LIMÓN</h4>
+                    <p class="descripcion">Limón fresco<br>1kg</p>
+                    <span class="precio">S/ 3.80</span>
+                    <div class="card-buttons">
+                        <button class="btn-carrito">🛒 Agregar</button>
+                        <button class="btn-ver">👁️ Ver</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-pro" data-nombre="PALTA">
+                <div class="card-img"><img src="imagenes/frutas_verduras/verdura_PALTA.jpeg" alt="PALTA"></div>
+                <div class="card-info">
+                    <h4>PALTA</h4>
+                    <p class="descripcion">Palta fuerte<br>1kg</p>
+                    <span class="precio">S/ 5.50</span>
+                    <div class="card-buttons">
+                        <button class="btn-carrito">🛒 Agregar</button>
+                        <button class="btn-ver">👁️ Ver</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-pro" data-nombre="PAPA">
+                <div class="card-img"><img src="imagenes/frutas_verduras/verdura_PAPA.jpeg" alt="PAPA"></div>
+                <div class="card-info">
+                    <h4>PAPA</h4>
+                    <p class="descripcion">Papa blanca<br>1kg</p>
+                    <span class="precio">S/ 2.80</span>
+                    <div class="card-buttons">
+                        <button class="btn-carrito">🛒 Agregar</button>
+                        <button class="btn-ver">👁️ Ver</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-pro" data-nombre="TOMATE">
+                <div class="card-img"><img src="imagenes/frutas_verduras/verdura_TOMATE.jpeg" alt="TOMATE"></div>
+                <div class="card-info">
+                    <h4>TOMATE</h4>
+                    <p class="descripcion">Tomate rojo<br>1kg</p>
+                    <span class="precio">S/ 4.20</span>
+                    <div class="card-buttons">
+                        <button class="btn-carrito">🛒 Agregar</button>
+                        <button class="btn-ver">👁️ Ver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <p>Email: info@valverdes.com</p>
+                <p>Teléfono: (123) 456-7890</p>
+            </div>
+            <div class="footer-section">
+                <h4>Categorías</h4>
+                <ul>
+                    <li><a href="categoria_frutas.html">Frutas y Verduras</a></li>
+                    <li><a href="categoria_snacks.html">Snacks</a></li>
+                    <li><a href="categoria_licores.html">Licores</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Información</h4>
+                <ul>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Libro de Reclamaciones</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Valverdes. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function verificarSesion() {
+            const usuario = localStorage.getItem('usuario');
+            const enlaceLogin = document.getElementById('usuarioHeader');
+            if (usuario) {
+                enlaceLogin.innerHTML = '👤 ' + usuario;
+                enlaceLogin.href = '#';
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('keyup', function(e) {
+            const searchTerm = e.target.value.toLowerCase().replace(/\s+/g, '');
+            const productos = document.querySelectorAll('.card-pro');
+            
+            productos.forEach(producto => {
+                const nombre = producto.getAttribute('data-nombre').toLowerCase().replace(/\s+/g, '');
+                if (nombre.includes(searchTerm)) {
+                    producto.style.display = 'block';
+                } else {
+                    producto.style.display = 'none';
+                }
+            });
+        });
+
+        document.querySelectorAll('.btn-carrito').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const producto = this.closest('.card-pro');
+                const nombre = producto.querySelector('h4').textContent;
+                const precio = producto.querySelector('.precio').textContent;
+                alert('Producto agregado: ' + nombre + ' (' + precio + ')');
+            });
+        });
+
+        document.querySelectorAll('.btn-ver').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const producto = this.closest('.card-pro');
+                const nombre = producto.querySelector('h4').textContent;
+                alert('Ver detalles de: ' + nombre);
+            });
+        });
+
+        verificarSesion();
+    </script>
+</body>
+</html>

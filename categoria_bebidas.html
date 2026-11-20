@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bebidas</title>
+
+<link rel="stylesheet" href="estilos/estilos_principales.css">
+</head>
+
+<body>
+
+<div class="contenedor">
+
+<!-- HEADER -->
+<header class="header">
+    <div class="logo-contenedor">
+    <img src="imagenes/logo.png" alt="Logo Valverde´s" class="logo-img">
+    <h2 class="logo-texto">VALVERDE´S</h2>
+</div>
+
+    <nav class="menu">
+        <a href="index.html">Inicio</a>
+        <a href="promociones.html">Ofertas</a>
+        <a href="acercadenosotros.html">Acerca de</a>
+        <a href="login.html" id="usuarioHeader">Iniciar sesión</a>
+    </nav>
+
+    <a href="carrito.html" class="carrito">
+    🛒 <span id="contadorCarrito">0</span>
+</a>
+</header>
+
+<!-- TITULO + BUSCADOR -->
+<section class="seccion">
+<h2 class="titulo">BEBIDAS</h2>
+
+<div class="buscador">
+    <input type="text" id="buscadorCategoria" placeholder="Buscar bebida...">
+    <button onclick="buscarCategoria()">Buscar</button>
+</div>
+</section>
+
+<!-- PRODUCTOS -->
+<section class="productos">
+
+<!-- INCA KOLA -->
+<div class="card-pro" data-nombre="inca kola">
+<div class="card-img"><img src="imagenes/bebidas/gaseosa_INCAKOLA_original.jpeg"></div>
+<div class="card-info">
+<h4>INCA KOLA ORIGINAL</h4>
+<p class="descripcion">Botella 500ml</p>
+<span class="precio">S/ 4.90</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Inca Kola',4.9,'imagenes/bebidas/gaseosa_INCAKOLA_original.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Inca Kola',4.9,'imagenes/bebidas/gaseosa_INCAKOLA_original.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- COCA COLA ORIGINAL -->
+<div class="card-pro" data-nombre="coca cola">
+<div class="card-img"><img src="imagenes/bebidas/gaseosa_COCACOLA_original.jpeg"></div>
+<div class="card-info">
+<h4>COCA COLA ORIGINAL</h4>
+<p class="descripcion">Botella 500ml</p>
+<span class="precio">S/ 3.80</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Coca Cola',3.8,'imagenes/bebidas/gaseosa_COCACOLA_original.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Coca Cola',3.8,'imagenes/bebidas/gaseosa_COCACOLA_original.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- COCA COLA ZERO -->
+<div class="card-pro" data-nombre="coca cola zero">
+<div class="card-img"><img src="imagenes/bebidas/gaseosa_COCACOLA_zero.jpeg"></div>
+<div class="card-info">
+<h4>COCA COLA ZERO</h4>
+<p class="descripcion">Botella 500ml</p>
+<span class="precio">S/ 3.80</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Coca Cola Zero',3.8,'imagenes/bebidas/gaseosa_COCACOLA_zero.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Coca Cola Zero',3.8,'imagenes/bebidas/gaseosa_COCACOLA_zero.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- SPRITE -->
+<div class="card-pro" data-nombre="sprite">
+<div class="card-img"><img src="imagenes/bebidas/gaseosa_SPRITE_limalimon.jpeg"></div>
+<div class="card-info">
+<h4>SPRITE LIMA LIMÓN</h4>
+<p class="descripcion">Botella 500ml</p>
+<span class="precio">S/ 3.50</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Sprite',3.5,'imagenes/bebidas/gaseosa_SPRITE_limalimon.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Sprite',3.5,'imagenes/bebidas/gaseosa_SPRITE_limalimon.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- FANTA KOLA INGLESA -->
+<div class="card-pro" data-nombre="fanta">
+<div class="card-img"><img src="imagenes/bebidas/gaseosa_FANTA_kolainglesa.jpeg"></div>
+<div class="card-info">
+<h4>FANTA KOLA INGLESA</h4>
+<p class="descripcion">Botella 500ml</p>
+<span class="precio">S/ 3.70</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Fanta',3.7,'imagenes/bebidas/gaseosa_FANTA_kolainglesa.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Fanta',3.7,'imagenes/bebidas/gaseosa_FANTA_kolainglesa.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- PEPSI -->
+<div class="card-pro" data-nombre="pepsi">
+<div class="card-img"><img src="imagenes/bebidas/gaseosa_PEPSI.jpeg"></div>
+<div class="card-info">
+<h4>PEPSI ORIGINAL</h4>
+<p class="descripcion">Botella 500ml</p>
+<span class="precio">S/ 3.60</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Pepsi',3.6,'imagenes/bebidas/gaseosa_PEPSI.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Pepsi',3.6,'imagenes/bebidas/gaseosa_PEPSI.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- PEPSI LATA -->
+<div class="card-pro" data-nombre="pepsi lata">
+<div class="card-img"><img src="imagenes/bebidas/gaseosa_PEPSI_lata.jpeg"></div>
+<div class="card-info">
+<h4>PEPSI LATA</h4>
+<p class="descripcion">Lata 355ml</p>
+<span class="precio">S/ 3.20</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Pepsi Lata',3.2,'imagenes/bebidas/gaseosa_PEPSI_lata.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Pepsi Lata',3.2,'imagenes/bebidas/gaseosa_PEPSI_lata.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- GUARANÁ -->
+<div class="card-pro" data-nombre="guarana">
+<div class="card-img"><img src="imagenes/bebidas/gaseosa_GUARANA.jpeg"></div>
+<div class="card-info">
+<h4>GUARANÁ</h4>
+<p class="descripcion">Botella 500ml</p>
+<span class="precio">S/ 4.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Guaraná',4.0,'imagenes/bebidas/gaseosa_GUARANA.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Guaraná',4.0,'imagenes/bebidas/gaseosa_GUARANA.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- RED BULL -->
+<div class="card-pro" data-nombre="red bull">
+<div class="card-img"><img src="imagenes/bebidas/energizante_REDBULL.jpeg"></div>
+<div class="card-info">
+<h4>RED BULL</h4>
+<p class="descripcion">Lata 250ml</p>
+<span class="precio">S/ 8.50</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Red Bull',8.5,'imagenes/bebidas/energizante_REDBULL.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Red Bull',8.5,'imagenes/bebidas/energizante_REDBULL.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- MONSTER ENERGY -->
+<div class="card-pro" data-nombre="monster energy">
+<div class="card-img"><img src="imagenes/bebidas/energizante_MONSTER_energy.jpeg"></div>
+<div class="card-info">
+<h4>MONSTER ENERGY</h4>
+<p class="descripcion">Lata 355ml</p>
+<span class="precio">S/ 9.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Monster Energy',9.0,'imagenes/bebidas/energizante_MONSTER_energy.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Monster Energy',9.0,'imagenes/bebidas/energizante_MONSTER_energy.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- MONSTER PARADISE -->
+<div class="card-pro" data-nombre="monster paradise">
+<div class="card-img"><img src="imagenes/bebidas/energizante_MONSTER_paradise.jpeg"></div>
+<div class="card-info">
+<h4>MONSTER PARADISE</h4>
+<p class="descripcion">Lata 355ml</p>
+<span class="precio">S/ 9.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Monster Paradise',9.0,'imagenes/bebidas/energizante_MONSTER_paradise.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Monster Paradise',9.0,'imagenes/bebidas/energizante_MONSTER_paradise.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- MONSTER PIPELINE PUNCH -->
+<div class="card-pro" data-nombre="monster pipeline">
+<div class="card-img"><img src="imagenes/bebidas/energizante_MONSTER_pipelinepunch.jpeg"></div>
+<div class="card-info">
+<h4>MONSTER PIPELINE PUNCH</h4>
+<p class="descripcion">Lata 355ml</p>
+<span class="precio">S/ 9.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Monster Pipeline',9.0,'imagenes/bebidas/energizante_MONSTER_pipelinepunch.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Monster Pipeline',9.0,'imagenes/bebidas/energizante_MONSTER_pipelinepunch.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- MONSTER ULTRA -->
+<div class="card-pro" data-nombre="monster ultra">
+<div class="card-img"><img src="imagenes/bebidas/energizante_MONSTER_ultra.jpeg"></div>
+<div class="card-info">
+<h4>MONSTER ULTRA</h4>
+<p class="descripcion">Lata 355ml</p>
+<span class="precio">S/ 9.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Monster Ultra',9.0,'imagenes/bebidas/energizante_MONSTER_ultra.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Monster Ultra',9.0,'imagenes/bebidas/energizante_MONSTER_ultra.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- MONSTER ZERO SUGAR -->
+<div class="card-pro" data-nombre="monster zero">
+<div class="card-img"><img src="imagenes/bebidas/energizante_MONSTER_zerosugar.jpeg"></div>
+<div class="card-info">
+<h4>MONSTER ZERO SUGAR</h4>
+<p class="descripcion">Lata 355ml</p>
+<span class="precio">S/ 9.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Monster Zero',9.0,'imagenes/bebidas/energizante_MONSTER_zerosugar.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Monster Zero',9.0,'imagenes/bebidas/energizante_MONSTER_zerosugar.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- VOLT GAMER -->
+<div class="card-pro" data-nombre="volt gamer">
+<div class="card-img"><img src="imagenes/bebidas/energizante_VOLT_gamer.jpeg"></div>
+<div class="card-info">
+<h4>VOLT GAMER</h4>
+<p class="descripcion">Lata 250ml</p>
+<span class="precio">S/ 6.50</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Volt Gamer',6.5,'imagenes/bebidas/energizante_VOLT_gamer.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Volt Gamer',6.5,'imagenes/bebidas/energizante_VOLT_gamer.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- VOLT MACA -->
+<div class="card-pro" data-nombre="volt maca">
+<div class="card-img"><img src="imagenes/bebidas/energizante_VOLT_maca.jpeg"></div>
+<div class="card-info">
+<h4>VOLT MACA</h4>
+<p class="descripcion">Lata 250ml</p>
+<span class="precio">S/ 6.50</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Volt Maca',6.5,'imagenes/bebidas/energizante_VOLT_maca.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Volt Maca',6.5,'imagenes/bebidas/energizante_VOLT_maca.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- FRUGOS CITRUS -->
+<div class="card-pro" data-nombre="frugos citrus">
+<div class="card-img"><img src="imagenes/bebidas/frugos_citrus.jpeg"></div>
+<div class="card-info">
+<h4>FRUGOS CITRUS</h4>
+<p class="descripcion">Jugo 250ml</p>
+<span class="precio">S/ 3.50</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Frugos Citrus',3.5,'imagenes/bebidas/frugos_citrus.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Frugos Citrus',3.5,'imagenes/bebidas/frugos_citrus.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- FRUGOS DURAZNO -->
+<div class="card-pro" data-nombre="frugos durazno">
+<div class="card-img"><img src="imagenes/bebidas/frugos_durazno.jpeg"></div>
+<div class="card-info">
+<h4>FRUGOS DURAZNO</h4>
+<p class="descripcion">Jugo 250ml</p>
+<span class="precio">S/ 3.50</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Frugos Durazno',3.5,'imagenes/bebidas/frugos_durazno.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Frugos Durazno',3.5,'imagenes/bebidas/frugos_durazno.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- ALOE BIO -->
+<div class="card-pro" data-nombre="aloe bio">
+<div class="card-img"><img src="imagenes/bebidas/aloe_BIO.jpeg"></div>
+<div class="card-info">
+<h4>ALOE BIO</h4>
+<p class="descripcion">Bebida Aloe 500ml</p>
+<span class="precio">S/ 5.00</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Aloe Bio',5.0,'imagenes/bebidas/aloe_BIO.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Aloe Bio',5.0,'imagenes/bebidas/aloe_BIO.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- ALOE KERO PIÑA -->
+<div class="card-pro" data-nombre="aloe kero piña">
+<div class="card-img"><img src="imagenes/bebidas/aloe_KERO_piña.jpg"></div>
+<div class="card-info">
+<h4>ALOE KERO PIÑA</h4>
+<p class="descripcion">Bebida Aloe 1L</p>
+<span class="precio">S/ 7.50</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Aloe Kero Piña',7.5,'imagenes/bebidas/aloe_KERO_piña.jpg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Aloe Kero Piña',7.5,'imagenes/bebidas/aloe_KERO_piña.jpg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- ALOE KERO UVA -->
+<div class="card-pro" data-nombre="aloe kero uva">
+<div class="card-img"><img src="imagenes/bebidas/aloe_KERO_uva_1L.jpg"></div>
+<div class="card-info">
+<h4>ALOE KERO UVA</h4>
+<p class="descripcion">Bebida Aloe 1L</p>
+<span class="precio">S/ 7.50</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Aloe Kero Uva',7.5,'imagenes/bebidas/aloe_KERO_uva_1L.jpg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Aloe Kero Uva',7.5,'imagenes/bebidas/aloe_KERO_uva_1L.jpg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- GATORADE MANDARINA -->
+<div class="card-pro" data-nombre="gatorade mandarina">
+<div class="card-img"><img src="imagenes/bebidas/rehidratante_GETORADE_mandarina.jpeg"></div>
+<div class="card-info">
+<h4>GATORADE MANDARINA</h4>
+<p class="descripcion">Bebida Rehidratante 600ml</p>
+<span class="precio">S/ 5.80</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Gatorade Mandarina',5.8,'imagenes/bebidas/rehidratante_GETORADE_mandarina.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Gatorade Mandarina',5.8,'imagenes/bebidas/rehidratante_GETORADE_mandarina.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- DILYTE BLUEBERRY -->
+<div class="card-pro" data-nombre="dilyte blueberry">
+<div class="card-img"><img src="imagenes/bebidas/rehidratante_DILYTE_blueberry.jpeg"></div>
+<div class="card-info">
+<h4>DILYTE BLUEBERRY</h4>
+<p class="descripcion">Bebida Rehidratante 500ml</p>
+<span class="precio">S/ 5.50</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Dilyte Blueberry',5.5,'imagenes/bebidas/rehidratante_DILYTE_blueberry.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Dilyte Blueberry',5.5,'imagenes/bebidas/rehidratante_DILYTE_blueberry.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- DILYTE MANZANA -->
+<div class="card-pro" data-nombre="dilyte manzana">
+<div class="card-img"><img src="imagenes/bebidas/rehidratante_DILYTE_manzana.jpeg"></div>
+<div class="card-info">
+<h4>DILYTE MANZANA</h4>
+<p class="descripcion">Bebida Rehidratante 500ml</p>
+<span class="precio">S/ 5.50</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Dilyte Manzana',5.5,'imagenes/bebidas/rehidratante_DILYTE_manzana.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Dilyte Manzana',5.5,'imagenes/bebidas/rehidratante_DILYTE_manzana.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- POWERADE MARACUYA -->
+<div class="card-pro" data-nombre="powerade maracuya">
+<div class="card-img"><img src="imagenes/bebidas/rehidratante_POWERADE_maracuya.jpeg"></div>
+<div class="card-info">
+<h4>POWERADE MARACUYA</h4>
+<p class="descripcion">Bebida Rehidratante 600ml</p>
+<span class="precio">S/ 5.80</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Powerade Maracuya',5.8,'imagenes/bebidas/rehidratante_POWERADE_maracuya.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Powerade Maracuya',5.8,'imagenes/bebidas/rehidratante_POWERADE_maracuya.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+<!-- POWERADE MULTIFRUTAS -->
+<div class="card-pro" data-nombre="powerade multifrutas">
+<div class="card-img"><img src="imagenes/bebidas/rehidratante_POWERADE_multifrutas_1L.jpeg"></div>
+<div class="card-info">
+<h4>POWERADE MULTIFRUTAS</h4>
+<p class="descripcion">Bebida Rehidratante 1L</p>
+<span class="precio">S/ 7.50</span>
+<div class="botones-card">
+<button class="btn-carrito" onclick="agregarAlCarrito('Powerade Multifrutas',7.5,'imagenes/bebidas/rehidratante_POWERADE_multifrutas_1L.jpeg')">Agregar</button>
+<button class="btn-ver" onclick="verProducto('Powerade Multifrutas',7.5,'imagenes/bebidas/rehidratante_POWERADE_multifrutas_1L.jpeg')">👁 Ver</button>
+</div>
+</div>
+</div>
+
+</section>
+
+
+
+<script src="scripts/carrito_compras.js"></script>
+
+<script>
+function buscarCategoria(){
+    let input = document.getElementById("buscadorCategoria").value.toLowerCase();
+
+    document.querySelectorAll(".card-pro").forEach(p=>{
+        let nombre = p.getAttribute("data-nombre");
+        p.style.display = nombre.includes(input) ? "block" : "none";
+    });
+}
+</script>
+
+<script>
+function verificarSesion(){
+    let user = JSON.parse(localStorage.getItem("usuarioLogeado"));
+
+    let header = document.getElementById("usuarioHeader");
+
+    if(user){
+        header.innerHTML = "👤 " + user.nombre + " | Cerrar sesión";
+        header.onclick = cerrarSesion;
+    }else{
+        header.innerHTML = "Iniciar sesión";
+        header.href = "login.html";
+    }
+}
+
+function cerrarSesion(){
+    localStorage.removeItem("usuarioLogeado");
+    window.location.reload();
+}
+
+// ejecutar
+verificarSesion();
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="footer-contenido">
+
+<div>
+<img src="imagenes/logo.png" width="80">
+<p>Valverde´s Minimarket</p>
+<p>📞 +51 986 620 3000</p>
+<p>📍 C. Maruri 382, Cusco 00800</p>
+</div>
+
+<div>
+<h4>Compra en</h4>
+<p>¿Cómo comprar?</p>
+<p>Formas de pago</p>
+<p>Preguntas frecuentes</p>
+</div>
+
+<div>
+<h4>Políticas</h4>
+<p>Términos y condiciones</p>
+<p>Privacidad</p>
+</div>
+
+<div>
+<h4>Síguenos</h4>
+<p>Facebook | Instagram | TikTok</p>
+</div>
+
+</div>
+</footer>
+</div>
+
+</body>
+</html>
