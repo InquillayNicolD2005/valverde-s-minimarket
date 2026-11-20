@@ -56,9 +56,58 @@ function ensure_schema($conn) {
         activo TINYINT(1) NOT NULL DEFAULT 1,
         actualizado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     ) ENGINE=InnoDB");
+
+    $conn->query("CREATE TABLE IF NOT EXISTS ofertas (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nombre VARCHAR(150) NOT NULL,
+        descripcion VARCHAR(255) NOT NULL DEFAULT '',
+        imagen VARCHAR(255) NOT NULL DEFAULT 'imagenes/logo.png',
+        precio_original DECIMAL(10,2) NOT NULL DEFAULT 0,
+        precio_oferta DECIMAL(10,2) NOT NULL DEFAULT 0,
+        etiqueta VARCHAR(50) NOT NULL DEFAULT 'OFERTA',
+        activo TINYINT(1) NOT NULL DEFAULT 1,
+        actualizado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB");
+
+    $conn->query("CREATE TABLE IF NOT EXISTS contenido_sitio (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        clave VARCHAR(80) NOT NULL UNIQUE,
+        contenido TEXT NOT NULL
+    ) ENGINE=InnoDB");
 }
 
 ensure_schema($conn);
+
+$conteoOfertas = intval($conn->query("SELECT COUNT(*) FROM ofertas")->fetch_row()[0]);
+if ($conteoOfertas === 0) {
+    $ofertasIniciales = [
+        ["Canasta de frutas","Manzana, naranja y plátano seleccionados.","imagenes/ofertas/oferta2.png",16.20,12.96,"20% OFF"],
+        ["Bebidas 2×1","Dos Coca Cola de 500 ml.","imagenes/ofertas/oferta1.png",7.60,3.80,"2×1"],
+        ["Snacks y galletas","Selección de galletas para compartir.","imagenes/ofertas/oferta4.png",4.50,4.05,"10% OFF"],
+        ["Combo desayuno","Leche, pan y café para iniciar el día.","imagenes/ofertas/oferta5.png",12.00,9.90,"AHORRO"]
+    ];
+    $seedOferta = $conn->prepare("INSERT INTO ofertas (nombre,descripcion,imagen,precio_original,precio_oferta,etiqueta) VALUES (?,?,?,?,?,?)");
+    foreach ($ofertasIniciales as $oferta) {
+        [$nombre,$descripcion,$imagen,$original,$ofertaPrecio,$etiqueta] = $oferta;
+        $seedOferta->bind_param("sssdds",$nombre,$descripcion,$imagen,$original,$ofertaPrecio,$etiqueta);
+        $seedOferta->execute();
+    }
+}
+
+$contenidoInicial = [
+    "about_hero" => "Desde Cusco trabajamos cada día para llevarte productos esenciales con atención cercana y entregas rápidas.",
+    "about_mision" => "Ofrecer una experiencia de compra rápida, amable y confiable, con productos frescos y de primera necesidad para nuestros vecinos de Cusco.",
+    "about_vision" => "Ser el minimarket de referencia de nuestra comunidad mediante servicio innovador, variedad y compromiso constante con nuestros clientes.",
+    "about_address" => "C. Maruri 382, Cusco 00800",
+    "about_phone" => "+51 986 620 300",
+    "about_email" => "valverdesminimarket@gmail.com",
+    "about_whatsapp" => "51986620300"
+];
+foreach ($contenidoInicial as $clave => $contenido) {
+    $stmt = $conn->prepare("INSERT INTO contenido_sitio (clave,contenido) VALUES (?,?) ON DUPLICATE KEY UPDATE clave=clave");
+    $stmt->bind_param("ss",$clave,$contenido);
+    $stmt->execute();
+}
 
 $productoConteo = $conn->query("SELECT COUNT(*) AS total FROM productos")->fetch_assoc()["total"];
 if (intval($productoConteo) === 0) {
@@ -108,6 +157,22 @@ if ($action === "logout") {
     exit;
 }
 
+if ($action === "offers_public") {
+    $ofertas = [];
+    $resultado = $conn->query("SELECT id,nombre,descripcion,imagen,precio_original,precio_oferta,etiqueta FROM ofertas WHERE activo=1 ORDER BY id ASC");
+    while ($fila = $resultado->fetch_assoc()) $ofertas[] = $fila;
+    echo json_encode(["ok"=>true,"ofertas"=>$ofertas]);
+    exit;
+}
+
+if ($action === "content_public") {
+    $contenido = [];
+    $resultado = $conn->query("SELECT clave,contenido FROM contenido_sitio");
+    while ($fila = $resultado->fetch_assoc()) $contenido[$fila["clave"]] = $fila["contenido"];
+    echo json_encode(["ok"=>true,"contenido"=>$contenido]);
+    exit;
+}
+
 if ($action === "create_order") {
     $payload = $jsonPayload;
     if (isset($_POST["payload"])) {
@@ -117,6 +182,7 @@ if ($action === "create_order") {
         echo json_encode(["ok" => false, "message" => "No hay productos en el pedido"]);
         exit;
     }
+
     $cliente = trim($payload["cliente"] ?? "Cliente");
     $usuarioId = intval($payload["usuario_id"] ?? 0);
     $direccion = trim($payload["direccion"] ?? "");
@@ -215,6 +281,68 @@ if ($action === "delete_product") {
     $stmt = $conn->prepare("DELETE FROM productos WHERE id=?");
     $stmt->bind_param("i", $id);
     $stmt->execute();
+    echo json_encode(["ok"=>true]);
+    exit;
+}
+
+if ($action === "offers") {
+    $ofertas = [];
+    $resultado = $conn->query("SELECT id,nombre,descripcion,imagen,precio_original,precio_oferta,etiqueta,activo FROM ofertas ORDER BY id ASC");
+    while ($fila = $resultado->fetch_assoc()) $ofertas[] = $fila;
+    echo json_encode(["ok"=>true,"ofertas"=>$ofertas]);
+    exit;
+}
+
+if ($action === "save_offer") {
+    $id = intval($_POST["id"] ?? 0);
+    $nombre = trim($_POST["nombre"] ?? "");
+    $descripcion = trim($_POST["descripcion"] ?? "");
+    $imagen = trim($_POST["imagen"] ?? "imagenes/ofertas/oferta.png");
+    $original = floatval($_POST["precio_original"] ?? 0);
+    $oferta = floatval($_POST["precio_oferta"] ?? 0);
+    $etiqueta = trim($_POST["etiqueta"] ?? "OFERTA");
+    $activo = intval($_POST["activo"] ?? 1);
+    if ($nombre === "" || $oferta < 0) {
+        echo json_encode(["ok"=>false,"message"=>"Completa los datos de la oferta"]);
+        exit;
+    }
+    if ($id > 0) {
+        $stmt = $conn->prepare("UPDATE ofertas SET nombre=?,descripcion=?,imagen=?,precio_original=?,precio_oferta=?,etiqueta=?,activo=? WHERE id=?");
+        $stmt->bind_param("sssddsii",$nombre,$descripcion,$imagen,$original,$oferta,$etiqueta,$activo,$id);
+    } else {
+        $stmt = $conn->prepare("INSERT INTO ofertas (nombre,descripcion,imagen,precio_original,precio_oferta,etiqueta,activo) VALUES (?,?,?,?,?,?,?)");
+        $stmt->bind_param("sssddsi",$nombre,$descripcion,$imagen,$original,$oferta,$etiqueta,$activo);
+    }
+    $stmt->execute();
+    echo json_encode(["ok"=>true]);
+    exit;
+}
+
+if ($action === "delete_offer") {
+    $id = intval($_POST["id"] ?? 0);
+    $stmt = $conn->prepare("DELETE FROM ofertas WHERE id=?");
+    $stmt->bind_param("i",$id);
+    $stmt->execute();
+    echo json_encode(["ok"=>true]);
+    exit;
+}
+
+if ($action === "content") {
+    $contenido = [];
+    $resultado = $conn->query("SELECT clave,contenido FROM contenido_sitio");
+    while ($fila = $resultado->fetch_assoc()) $contenido[$fila["clave"]] = $fila["contenido"];
+    echo json_encode(["ok"=>true,"contenido"=>$contenido]);
+    exit;
+}
+
+if ($action === "save_content") {
+    $campos = ["about_hero","about_mision","about_vision","about_address","about_phone","about_email","about_whatsapp"];
+    $stmt = $conn->prepare("INSERT INTO contenido_sitio (clave,contenido) VALUES (?,?) ON DUPLICATE KEY UPDATE contenido=VALUES(contenido)");
+    foreach ($campos as $clave) {
+        $valor = trim($_POST[$clave] ?? "");
+        $stmt->bind_param("ss",$clave,$valor);
+        $stmt->execute();
+    }
     echo json_encode(["ok"=>true]);
     exit;
 }

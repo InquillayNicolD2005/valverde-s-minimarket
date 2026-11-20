@@ -387,7 +387,15 @@ function inicializarInterfaz(){
     const userHeader = document.getElementById("usuarioHeader");
     if (userHeader && user) {
         userHeader.textContent = "👤 " + (user.nombre || user.usuario || "Mi cuenta");
-        userHeader.href = "carrito.html";
-        userHeader.title = "Ver pedidos y datos de entrega";
+        userHeader.href = "#";
+        userHeader.title = "Cerrar sesión";
+        userHeader.setAttribute("aria-label","Cerrar sesión de "+(user.nombre||user.usuario));
+        userHeader.addEventListener("click", function(event){
+            event.preventDefault();
+            if(confirm("¿Deseas cerrar tu sesión?")){
+                localStorage.removeItem("usuarioLogeado");
+                window.location.href="index.html";
+            }
+        });
     }
 }

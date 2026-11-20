@@ -21,7 +21,7 @@
 </section>
 <section>
 <h2 class="titulo">Ofertas disponibles</h2>
-<div class="offer-grid">
+<div class="offer-grid" id="offersGrid">
 <article class="offer-card wide">
 <span class="offer-badge">20% OFF</span><img src="imagenes/ofertas/oferta2.png" alt="Oferta en frutas">
 <div class="offer-info"><h3>Canasta de frutas</h3><p>Manzana, naranja y plátano seleccionados.</p><div class="offer-prices"><span class="offer-old">S/ 16.20</span><span class="offer-new">S/ 12.96</span></div><button class="btn-carrito" onclick="agregarOferta('Canasta de frutas',12.96,'imagenes/ofertas/oferta2.png')">Agregar oferta</button></div>
@@ -49,5 +49,20 @@ function agregarOfertaDosPorUno(){
     agregarAlCarrito('Coca Cola 2×1',3.80,'imagenes/ofertas/oferta1.png');
     mostrarToast('Oferta 2×1 agregada: 2 Coca Cola');
 }
+async function cargarOfertasPublicas(){
+    try{
+        const response=await fetch("admin_api.php?action=offers_public");
+        const data=await response.json();
+        if(!data.ok||!data.ofertas?.length)return;
+        const grid=document.getElementById("offersGrid");
+        grid.innerHTML=data.ofertas.map((oferta,index)=>`
+        <article class="offer-card ${index===0?"wide":""}">
+        <span class="offer-badge">${oferta.etiqueta}</span>
+        <img src="${oferta.imagen}" alt="${oferta.nombre}">
+        <div class="offer-info"><h3>${oferta.nombre}</h3><p>${oferta.descripcion}</p><div class="offer-prices">${Number(oferta.precio_original)>0?`<span class="offer-old">S/ ${Number(oferta.precio_original).toFixed(2)}</span>`:""}<span class="offer-new">S/ ${Number(oferta.precio_oferta).toFixed(2)}</span></div><button class="btn-carrito" onclick="agregarAlCarrito('${oferta.nombre.replace(/'/g,"\\'")}',${oferta.precio_oferta},'${oferta.imagen}')">Agregar oferta</button></div>
+        </article>`).join("");
+    }catch(error){console.error(error)}
+}
+cargarOfertasPublicas();
 </script>
 </body></html>

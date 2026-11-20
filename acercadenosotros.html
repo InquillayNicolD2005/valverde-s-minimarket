@@ -16,13 +16,13 @@
 <nav class="menu"><a href="index.html">Inicio</a><a href="promociones.html">Ofertas</a><a href="acercadenosotros.html" class="active">Acerca de Nosotros</a><a href="login.html" id="usuarioHeader">Iniciar sesión</a></nav>
 <a href="carrito.html" class="carrito">🛒 <span id="contadorCarrito">0</span></a>
 </header>
-<section class="about-hero"><div><span>CERCANOS, FRESCOS Y CONFIABLES</span><h1>Somos parte de tu barrio.</h1><p>Desde Cusco trabajamos cada día para llevarte productos esenciales con atención cercana y entregas rápidas.</p></div></section>
+<section class="about-hero"><div><span>CERCANOS, FRESCOS Y CONFIABLES</span><h1>Somos parte de tu barrio.</h1><p id="aboutPublicHero">Desde Cusco trabajamos cada día para llevarte productos esenciales con atención cercana y entregas rápidas.</p></div></section>
 <section class="about-stats">
 <div class="about-stat"><strong>+10</strong><span>Categorías</span></div><div class="about-stat"><strong>+150</strong><span>Productos</span></div><div class="about-stat"><strong>30 min</strong><span>Entrega express</span></div><div class="about-stat"><strong>7 días</strong><span>Atención semanal</span></div>
 </section>
 <section class="about-story">
-<article class="about-card"><div class="about-card-icon"><i class="fa-solid fa-bullseye"></i></div><h2>Nuestra misión</h2><p>Ofrecer una experiencia de compra rápida, amable y confiable, con productos frescos y de primera necesidad para nuestros vecinos de Cusco.</p></article>
-<article class="about-card"><div class="about-card-icon"><i class="fa-solid fa-eye"></i></div><h2>Nuestra visión</h2><p>Ser el minimarket de referencia de nuestra comunidad mediante servicio innovador, variedad y compromiso constante con nuestros clientes.</p></article>
+<article class="about-card"><div class="about-card-icon"><i class="fa-solid fa-bullseye"></i></div><h2>Nuestra misión</h2><p id="aboutPublicMission">Ofrecer una experiencia de compra rápida, amable y confiable, con productos frescos y de primera necesidad para nuestros vecinos de Cusco.</p></article>
+<article class="about-card"><div class="about-card-icon"><i class="fa-solid fa-eye"></i></div><h2>Nuestra visión</h2><p id="aboutPublicVision">Ser el minimarket de referencia de nuestra comunidad mediante servicio innovador, variedad y compromiso constante con nuestros clientes.</p></article>
 </section>
 <section class="values-grid">
 <article class="value-card"><i class="fa-solid fa-handshake"></i><h3>Confianza</h3><p>Atención honesta y procesos claros en cada pedido.</p></article>
@@ -31,9 +31,26 @@
 </section>
 <section class="about-contact">
 <div class="mapa"><iframe title="Ubicación de Valverde's" src="https://www.google.com/maps?q=C.%20Maruri%20382,%20Cusco%2000800&output=embed" loading="lazy"></iframe></div>
-<aside class="contact-card"><h2>Visítanos o escríbenos</h2><a href="tel:+51986620300"><i class="fa-solid fa-phone"></i><span>+51 986 620 300</span></a><a href="mailto:valverdesminimarket@gmail.com"><i class="fa-solid fa-envelope"></i><span>valverdesminimarket@gmail.com</span></a><a href="https://wa.me/51986620300" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></a><a class="claims-link" href="imagenes/libroreclamos.png" target="_blank" rel="noopener"><i class="fa-solid fa-book"></i><span>Libro de reclamaciones</span></a></aside>
+<aside class="contact-card"><h2>Visítanos o escríbenos</h2><a id="aboutPublicPhoneLink" href="tel:+51986620300"><i class="fa-solid fa-phone"></i><span id="aboutPublicPhone">+51 986 620 300</span></a><a id="aboutPublicEmailLink" href="mailto:valverdesminimarket@gmail.com"><i class="fa-solid fa-envelope"></i><span id="aboutPublicEmail">valverdesminimarket@gmail.com</span></a><a id="aboutPublicWhatsappLink" href="https://wa.me/51986620300" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i><span>WhatsApp</span></a><a class="claims-link" href="imagenes/libroreclamos.png" target="_blank" rel="noopener"><i class="fa-solid fa-book"></i><span>Libro de reclamaciones</span></a></aside>
 </section>
 <footer class="footer"><div class="footer-contenido"><div><img src="imagenes/logo.png" width="80"><p>Valverde's Minimarket</p><p>C. Maruri 382, Cusco</p></div><div><h4>Explora</h4><p><a href="index.html">Inicio</a></p><p><a href="promociones.html">Ofertas</a></p><p><a href="carrito.html">Mis pedidos</a></p></div><div><h4>Administración</h4><p><a href="admin_login.html">Acceso al panel</a></p></div></div></footer>
 </div>
 <script src="scripts/carrito_compras.js"></script>
+<script>
+async function cargarContenidoPublico(){
+ try{
+  const response=await fetch("admin_api.php?action=content_public");
+  const data=await response.json();
+  if(!data.ok)return;
+  const c=data.contenido;
+  if(c.about_hero)document.getElementById("aboutPublicHero").textContent=c.about_hero;
+  if(c.about_mision)document.getElementById("aboutPublicMission").textContent=c.about_mision;
+  if(c.about_vision)document.getElementById("aboutPublicVision").textContent=c.about_vision;
+  if(c.about_phone){document.getElementById("aboutPublicPhone").textContent=c.about_phone;document.getElementById("aboutPublicPhoneLink").href="tel:"+c.about_phone.replace(/\D/g,"");}
+  if(c.about_email){document.getElementById("aboutPublicEmail").textContent=c.about_email;document.getElementById("aboutPublicEmailLink").href="mailto:"+c.about_email;}
+  if(c.about_whatsapp)document.getElementById("aboutPublicWhatsappLink").href="https://wa.me/"+c.about_whatsapp.replace(/\D/g,"");
+ }catch(error){console.error(error)}
+}
+cargarContenidoPublico();
+</script>
 </body></html>
