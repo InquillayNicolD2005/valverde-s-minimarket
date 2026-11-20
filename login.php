@@ -4,8 +4,10 @@ include("conexion.php");
 $usuario = $_POST['usuario'];
 $password = $_POST['password'];
 
-$sql = "SELECT * FROM usuarios WHERE usuario='$usuario' AND contraseña='$password'";
-$result = $conn->query($sql);
+$stmt = $conn->prepare("SELECT id FROM usuarios WHERE usuario = ? AND contrasena = ?");
+$stmt->bind_param("ss", $usuario, $password);
+$stmt->execute();
+$result = $stmt->get_result();
 
 if ($result->num_rows > 0) {
     // LOGIN CORRECTO
