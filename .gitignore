@@ -1,8 +1,12 @@
 .env
 .env.*
+!.env.example
 *.log
 *.tmp
 .DS_Store
 Thumbs.db
 .scannerwork/
 .vscode/
+node_modules/
+client/dist/
+node_modules
