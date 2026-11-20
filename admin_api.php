@@ -37,9 +37,37 @@ function ensure_schema($conn) {
         cantidad INT NOT NULL DEFAULT 1,
         FOREIGN KEY (pedido_id) REFERENCES pedidos(id) ON DELETE CASCADE
     ) ENGINE=InnoDB");
+
+    $conn->query("CREATE TABLE IF NOT EXISTS productos (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        nombre VARCHAR(150) NOT NULL,
+        categoria VARCHAR(100) NOT NULL,
+        descripcion VARCHAR(255) NOT NULL DEFAULT '',
+        precio DECIMAL(10,2) NOT NULL,
+        imagen VARCHAR(255) NOT NULL DEFAULT 'imagenes/logo.png',
+        stock INT NOT NULL DEFAULT 0,
+        activo TINYINT(1) NOT NULL DEFAULT 1,
+        actualizado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    ) ENGINE=InnoDB");
 }
 
 ensure_schema($conn);
+
+$productoConteo = $conn->query("SELECT COUNT(*) AS total FROM productos")->fetch_assoc()["total"];
+if (intval($productoConteo) === 0) {
+    $productosIniciales = [
+        ["Inka Kola", "Bebidas", "Gaseosa original 500 ml", 4.90, "imagenes/bebidas/gaseosa_INCAKOLA_original.jpeg", 50],
+        ["Coca Cola", "Bebidas", "Gaseosa original 500 ml", 3.80, "imagenes/bebidas/gaseosa_COCACOLA_original.jpeg", 50],
+        ["Arroz", "Abarrotes", "Arroz extra seleccionado", 17.00, "imagenes/abarrotes/arroz_BELL'S_5kg.jpeg", 30],
+        ["Whisky", "Licores", "Botella seleccionada", 40.00, "imagenes/licores/licor_SMIRNOFF_original.jpeg", 15]
+    ];
+    $seedStmt = $conn->prepare("INSERT INTO productos (nombre,categoria,descripcion,precio,imagen,stock) VALUES (?,?,?,?,?,?)");
+    foreach ($productosIniciales as $producto) {
+        [$nombre,$categoria,$descripcion,$precio,$imagen,$stock] = $producto;
+        $seedStmt->bind_param("sssssi", $nombre,$categoria,$descripcion,$precio,$imagen,$stock);
+        $seedStmt->execute();
+    }
+}
 
 $jsonPayload = json_decode(file_get_contents("php://input"), true);
 if (!is_array($jsonPayload)) {
@@ -132,14 +160,66 @@ if ($action === "update_status") {
     exit;
 }
 
+if ($action === "users") {
+    $usuarios = [];
+    $resultado = $conn->query("SELECT id,usuario FROM usuarios ORDER BY id DESC");
+    while ($fila = $resultado->fetch_assoc()) $usuarios[] = $fila;
+    echo json_encode(["ok"=>true,"usuarios"=>$usuarios]);
+    exit;
+}
+
+if ($action === "products") {
+    $productos = [];
+    $resultado = $conn->query("SELECT id,nombre,categoria,descripcion,precio,imagen,stock,activo FROM productos ORDER BY nombre ASC");
+    while ($fila = $resultado->fetch_assoc()) $productos[] = $fila;
+    echo json_encode(["ok"=>true,"productos"=>$productos]);
+    exit;
+}
+
+if ($action === "save_product") {
+    $id = intval($_POST["id"] ?? 0);
+    $nombre = trim($_POST["nombre"] ?? "");
+    $categoria = trim($_POST["categoria"] ?? "");
+    $descripcion = trim($_POST["descripcion"] ?? "");
+    $precio = floatval($_POST["precio"] ?? 0);
+    $imagen = trim($_POST["imagen"] ?? "imagenes/logo.png");
+    $stock = intval($_POST["stock"] ?? 0);
+    $activo = intval($_POST["activo"] ?? 1);
+    if ($nombre === "" || $categoria === "" || $precio < 0) {
+        echo json_encode(["ok"=>false,"message"=>"Completa los datos del producto"]);
+        exit;
+    }
+    if ($id > 0) {
+        $stmt = $conn->prepare("UPDATE productos SET nombre=?,categoria=?,descripcion=?,precio=?,imagen=?,stock=?,activo=? WHERE id=?");
+        $stmt->bind_param("sssssiii", $nombre,$categoria,$descripcion,$precio,$imagen,$stock,$activo,$id);
+    } else {
+        $stmt = $conn->prepare("INSERT INTO productos (nombre,categoria,descripcion,precio,imagen,stock,activo) VALUES (?,?,?,?,?,?,?)");
+        $stmt->bind_param("sssssii", $nombre,$categoria,$descripcion,$precio,$imagen,$stock,$activo);
+    }
+    $stmt->execute();
+    echo json_encode(["ok"=>true]);
+    exit;
+}
+
+if ($action === "delete_product") {
+    $id = intval($_POST["id"] ?? 0);
+    $stmt = $conn->prepare("DELETE FROM productos WHERE id=?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    echo json_encode(["ok"=>true]);
+    exit;
+}
+
 if ($action === "dashboard") {
     $pendientes = $conn->query("SELECT COUNT(*) FROM pedidos WHERE estado='Pendiente'")->fetch_row()[0];
     $hoy = $conn->query("SELECT COUNT(*) FROM pedidos WHERE DATE(creado_en)=CURDATE()")->fetch_row()[0];
     $ventas = $conn->query("SELECT COALESCE(SUM(total),0) FROM pedidos WHERE estado!='Cancelado'")->fetch_row()[0];
+    $usuarios = $conn->query("SELECT COUNT(*) FROM usuarios")->fetch_row()[0];
+    $productos = $conn->query("SELECT COUNT(*) FROM productos WHERE activo=1")->fetch_row()[0];
     $pedidos = [];
     $resultado = $conn->query("SELECT id,cliente,direccion,hora_entrega,metodo_pago,subtotal,descuento,delivery,total,estado,creado_en FROM pedidos ORDER BY creado_en DESC LIMIT 100");
     while ($fila = $resultado->fetch_assoc()) $pedidos[] = $fila;
-    echo json_encode(["ok"=>true,"pendientes"=>intval($pendientes),"hoy"=>intval($hoy),"ventas"=>floatval($ventas),"pedidos"=>$pedidos]);
+    echo json_encode(["ok"=>true,"pendientes"=>intval($pendientes),"hoy"=>intval($hoy),"ventas"=>floatval($ventas),"usuarios"=>intval($usuarios),"productos"=>intval($productos),"pedidos"=>$pedidos]);
     exit;
 }
 
