@@ -11,7 +11,7 @@ function actualizarContador(){
     let contador = document.getElementById("contadorCarrito");
 
     if(contador){
-        contador.textContent = carrito.length;
+        contador.textContent = carrito.reduce((total, producto) => total + (producto.cantidad || 1), 0);
     }
 }
 
@@ -20,20 +20,21 @@ function actualizarContador(){
 // 🟢 AGREGAR PRODUCTO
 // =======================
 function agregarAlCarrito(nombre, precio, imagen){
-    carrito.push({
-        nombre: nombre,
-        precio: precio,
-        imagen: imagen,
-        cantidad: 1
-    });
+    const existente = carrito.find(producto => producto.nombre === nombre);
+    if (existente) {
+        existente.cantidad = (existente.cantidad || 1) + 1;
+    } else {
+        carrito.push({
+            nombre: nombre,
+            precio: precio,
+            imagen: imagen || "imagenes/logo.png",
+            cantidad: 1
+        });
+    }
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
     actualizarContador();
-
-
-
-
-    alert(nombre + " agregado al carrito");
+    mostrarToast(nombre + " agregado al carrito");
 }
 // =======================
 // 🔍 BUSCAR (INDEX)
@@ -132,24 +133,49 @@ function mostrarCarrito(){
 
     lista.innerHTML = "";
 
-    carrito.forEach(p=>{
+    carrito.forEach((p, index)=>{
+        const cantidad = p.cantidad || 1;
+        const subtotal = p.precio * cantidad;
         lista.innerHTML += `
         <div class="item-carrito">
 
             <img src="${p.imagen}" class="img-carrito">
 
-            <div>
-                <p>${p.nombre}</p>
-                <span>S/ ${p.precio}</span>
+            <div class="producto-info">
+                <p><strong>${p.nombre}</strong></p>
+                <span>S/ ${p.precio.toFixed(2)}</span>
             </div>
 
+            <div class="cantidad">
+                <button type="button" onclick="cambiarCantidad(${index}, -1)" aria-label="Restar">−</button>
+                <strong>${cantidad}</strong>
+                <button type="button" onclick="cambiarCantidad(${index}, 1)" aria-label="Sumar">+</button>
+            </div>
+
+            <div>
+                <strong>S/ ${subtotal.toFixed(2)}</strong>
+                <button type="button" class="btn-eliminar" onclick="eliminarProducto(${index})" aria-label="Eliminar ${p.nombre}">Eliminar</button>
+            </div>
         </div>
         `;
 
-        total += p.precio;
+        total += subtotal;
     });
 
-    document.getElementById("total").innerText = "Total: S/ " + total;
+    if (document.getElementById("total")) {
+        document.getElementById("total").innerText = "Total: S/ " + total.toFixed(2);
+    }
+}
+
+function cambiarCantidad(index, cambio){
+    if (!carrito[index]) return;
+    carrito[index].cantidad = (carrito[index].cantidad || 1) + cambio;
+    if (carrito[index].cantidad < 1) {
+        carrito.splice(index, 1);
+    }
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    mostrarCarrito();
+    actualizarContador();
 }
 
 
@@ -202,6 +228,7 @@ setInterval(cambiarSlide, 3000);
 window.onload = function(){
     actualizarContador();
     mostrarCarrito();
+    inicializarInterfaz();
 }
 
 
@@ -233,26 +260,30 @@ function limpiarBusqueda(){
     });
 }
 
-document.getElementById("buscadorInput").addEventListener("keypress", function(e){
-    if(e.key === "Enter"){
-        buscar();
-    }
-});
-
-// 🔥 en vivo
-document.getElementById("buscadorInput").addEventListener("input", buscar);
-
-// ocultar al inicio
-clearBtn.style.display = "none";
+const buscadorInput = document.getElementById("buscadorInput");
+if (buscadorInput) {
+    buscadorInput.addEventListener("keypress", function(e){
+        if(e.key === "Enter"){
+            buscar();
+        }
+    });
+    buscadorInput.addEventListener("input", function(){
+        if (buscadorInput.value.trim().length >= 2) buscar();
+        if (buscadorInput.value.trim().length === 0) mostrarTodoIndex();
+    });
+}
 
 
 let productosGlobal = [];
 
 // 🔥 Cargar JSON
 fetch("data/productos.json")
-.then(res => res.json())
+.then(res => res.ok ? res.json() : [])
 .then(data => {
     productosGlobal = data;
+})
+.catch(() => {
+    productosGlobal = [];
 });
 
 
@@ -262,7 +293,7 @@ fetch("data/productos.json")
 function actualizarContador(){
     let contador = document.getElementById("contadorCarrito");
     if(contador){
-        contador.innerText = carrito.length;
+        contador.innerText = carrito.reduce((total, producto) => total + (producto.cantidad || 1), 0);
     }
 }
 
@@ -277,4 +308,70 @@ function verProducto(nombre, precio, imagen){
     localStorage.setItem("productoSeleccionado", JSON.stringify(producto));
 
     window.location.href = "producto.html";
+}
+
+function mostrarToast(mensaje){
+    let stack = document.querySelector(".toast-stack");
+    if (!stack) {
+        stack = document.createElement("div");
+        stack.className = "toast-stack";
+        document.body.appendChild(stack);
+    }
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.textContent = mensaje;
+    stack.appendChild(toast);
+    window.setTimeout(() => toast.remove(), 2800);
+}
+
+function inicializarInterfaz(){
+    const header = document.querySelector(".header");
+    if (header && !header.querySelector(".mobile-menu-button")) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "mobile-menu-button";
+        button.setAttribute("aria-label", "Abrir menú");
+        button.textContent = "☰";
+        const menu = header.querySelector(".menu");
+        button.addEventListener("click", () => {
+            menu?.classList.toggle("abierto");
+            button.textContent = menu?.classList.contains("abierto") ? "✕" : "☰";
+        });
+        header.appendChild(button);
+    }
+
+    const banner = document.querySelector(".banner");
+    if (banner && !banner.querySelector(".banner-subtitle") && banner.parentElement) {
+        const titulo = banner.querySelector("h1");
+        if (titulo) {
+            const subtitle = document.createElement("p");
+            subtitle.className = "banner-subtitle";
+            subtitle.textContent = "Productos frescos, precios justos y entregas rápidas cerca de ti.";
+            titulo.insertAdjacentElement("afterend", subtitle);
+        }
+    }
+
+    if (!document.querySelector(".trust-strip") && document.querySelector(".banner")) {
+        const trust = document.createElement("div");
+        trust.className = "trust-strip";
+        trust.innerHTML = `
+            <div class="trust-item"><span class="trust-icon">⚡</span><div><strong>Entrega rápida</strong><span>Disponible en tu zona</span></div></div>
+            <div class="trust-item"><span class="trust-icon">✓</span><div><strong>Compra segura</strong><span>Pago protegido</span></div></div>
+            <div class="trust-item"><span class="trust-icon">↩</span><div><strong>Atención cercana</strong><span>Estamos para ayudarte</span></div></div>`;
+        document.querySelector(".banner").insertAdjacentElement("afterend", trust);
+    }
+
+    const currentPage = location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll(".menu a").forEach(link => {
+        if (link.getAttribute("href") === currentPage) {
+            link.classList.add("active");
+        }
+    });
+
+    const user = JSON.parse(localStorage.getItem("usuarioLogeado") || "null");
+    const userHeader = document.getElementById("usuarioHeader");
+    if (userHeader && user) {
+        userHeader.textContent = "Mi cuenta";
+        userHeader.href = "index.html";
+    }
 }
