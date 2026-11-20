@@ -835,6 +835,15 @@ body::before {
     background: #123722;
 }
 
+.footer a {
+    color: rgba(255, 255, 255, .84);
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #ffe38a;
+}
+
 .subir,
 .btn-scroll-top {
     bottom: 24px;
@@ -898,6 +907,7 @@ body::before {
     .banner { min-height: 360px; padding: 34px 28px; }
     .featured-grid { grid-template-columns: 1fr 1fr; }
     .featured-card-large { grid-column: 1 / -1; }
+    .shopping-benefits { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 680px) {
@@ -908,6 +918,12 @@ body::before {
     .featured-card { min-width: 82%; min-height: 230px; scroll-snap-align: start; }
     .featured-card-large { min-width: 88%; }
     .section-heading { align-items: center; }
+    .combo-grid { grid-template-columns: 1fr; }
+    .combo-card { min-height: 220px; }
+    .combo-card > img { min-height: 220px; }
+    .combo-copy { padding: 18px; }
+    .combo-copy h4 { font-size: 22px; }
+    .shopping-benefits { grid-template-columns: 1fr; }
     .header {
         top: 6px;
         margin: 6px 0 12px;
@@ -1181,6 +1197,127 @@ body::before {
     border-color: var(--primary);
     background: var(--primary);
     color: white;
+}
+
+.quick-order-section { margin-top: 44px; }
+
+.combo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.combo-card {
+    min-height: 260px;
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    background: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.combo-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 24px;
+}
+
+.combo-copy h4 {
+    margin: 12px 0 4px;
+    font-size: 27px;
+    letter-spacing: -1px;
+}
+
+.combo-copy p {
+    min-height: 42px;
+    margin: 0 0 10px;
+    color: var(--muted);
+}
+
+.combo-copy > div {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.combo-copy strong {
+    color: var(--primary);
+    font-size: 22px;
+}
+
+.combo-old {
+    color: #9aa49e;
+    text-decoration: line-through;
+}
+
+.combo-copy button {
+    border: 0;
+    border-radius: 11px;
+    background: var(--primary);
+    color: white;
+    padding: 11px 15px;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.combo-badge {
+    border-radius: 999px;
+    background: #fff1be;
+    color: #765400;
+    padding: 6px 9px;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.combo-badge-warm {
+    background: #e7f3ec;
+    color: var(--primary);
+}
+
+.combo-card > img {
+    width: 100%;
+    height: 100%;
+    min-height: 260px;
+    object-fit: cover;
+}
+
+.shopping-benefits {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.shopping-benefits article {
+    display: flex;
+    gap: 12px;
+    min-height: 112px;
+    align-items: flex-start;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: white;
+    padding: 16px;
+}
+
+.shopping-benefits article > span {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    flex: 0 0 38px;
+    border-radius: 11px;
+    background: var(--primary-soft);
+}
+
+.shopping-benefits strong { display: block; }
+.shopping-benefits p {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 13px;
 }
 
 .producto-grid{

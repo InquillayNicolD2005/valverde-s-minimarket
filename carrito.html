@@ -237,6 +237,79 @@
     background: #d32f2f;
 }
 
+.checkout-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 18px;
+    align-items: start;
+}
+
+.checkout-summary {
+    position: sticky;
+    top: 100px;
+    display: grid;
+    gap: 8px;
+    border: 1px solid #e3eae6;
+    border-radius: 18px;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 8px 24px rgba(29,68,47,.08);
+}
+
+.checkout-summary h3 {
+    margin: 0 0 8px;
+}
+
+.checkout-summary label {
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.checkout-input {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid #dde7e1;
+    border-radius: 10px;
+    background: #fbfcfb;
+    padding: 10px 12px;
+}
+
+.coupon-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+}
+
+.coupon-row button {
+    border: 0;
+    border-radius: 10px;
+    background: #176b3a;
+    color: white;
+    padding: 0 12px;
+    font-weight: 800;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    color: #69766f;
+}
+
+.discount-row {
+    color: #176b3a;
+}
+
+@media (max-width: 900px) {
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+    .checkout-summary {
+        position: static;
+    }
+}
+
 </style>
 
 </head>
@@ -269,6 +342,9 @@
 
 <h2 class="titulo-carrito">Carrito de compras</h2>
 
+<div class="checkout-layout">
+<div>
+
 <!-- ENCABEZADO -->
 <div class="encabezado">
     <div>Producto</div>
@@ -279,7 +355,23 @@
 
 <!-- LISTA -->
 <div id="lista"></div>
+</div>
 
+<aside class="checkout-summary">
+<h3>Resumen del pedido</h3>
+<label for="direccionEntrega">Dirección de entrega</label>
+<input id="direccionEntrega" class="checkout-input" type="text" placeholder="Ej. Av. El Sol 382">
+<label for="horaEntrega">Hora preferida</label>
+<select id="horaEntrega" class="checkout-input">
+    <option>Lo antes posible</option>
+    <option>De 12:00 p. m. a 2:00 p. m.</option>
+    <option>De 6:00 p. m. a 8:00 p. m.</option>
+</select>
+<label for="codigoPromocional">Código promocional</label>
+<div class="coupon-row"><input id="codigoPromocional" class="checkout-input" type="text" placeholder="Ej. VALVERDE10"><button type="button" onclick="aplicarCupon()">Aplicar</button></div>
+<div class="summary-row"><span>Subtotal</span><strong id="subtotalPedido">S/ 0.00</strong></div>
+<div class="summary-row"><span>Delivery</span><strong id="deliveryPedido">S/ 5.00</strong></div>
+<div class="summary-row discount-row" id="descuentoFila" hidden><span>Descuento</span><strong id="descuentoPedido">- S/ 0.00</strong></div>
 <!-- TOTAL -->
 <div class="total">
     <span>TOTAL</span>
@@ -288,6 +380,8 @@
 
 <!-- BOTON -->
 <button class="btn-pago" onclick="abrirModalPago()">Realizar Pago</button>
+</aside>
+</div>
 
 <!-- MODAL PAGO -->
 <div id="modalPago" class="modal-pago">
@@ -338,6 +432,8 @@
 <script>
 
 /* MOSTRAR CARRITO */
+let cuponAplicado = false;
+
 function mostrarCarrito(){
     let lista = document.getElementById("lista");
     let total = 0;
@@ -377,7 +473,27 @@ function mostrarCarrito(){
         total += subtotal;
     });
 
-    document.getElementById("total").innerText = "S/ " + total.toFixed(2);
+    const descuento = cuponAplicado ? total * 0.10 : 0;
+    const delivery = carrito.length > 0 ? 5 : 0;
+    const totalFinal = total - descuento + delivery;
+    if(document.getElementById("subtotalPedido")) document.getElementById("subtotalPedido").innerText = "S/ " + total.toFixed(2);
+    if(document.getElementById("deliveryPedido")) document.getElementById("deliveryPedido").innerText = "S/ " + delivery.toFixed(2);
+    if(document.getElementById("descuentoPedido")) document.getElementById("descuentoPedido").innerText = "- S/ " + descuento.toFixed(2);
+    if(document.getElementById("descuentoFila")) document.getElementById("descuentoFila").hidden = !cuponAplicado;
+    document.getElementById("total").innerText = "S/ " + totalFinal.toFixed(2);
+}
+
+function aplicarCupon(){
+    const codigo = document.getElementById("codigoPromocional").value.trim().toUpperCase();
+    if(codigo === "VALVERDE10"){
+        cuponAplicado = true;
+        mostrarCarrito();
+        mostrarToast("Cupón aplicado: 10% de descuento");
+    }else{
+        cuponAplicado = false;
+        mostrarCarrito();
+        alert("El código ingresado no es válido.");
+    }
 }
 
 /* CAMBIAR CANTIDAD */
@@ -404,6 +520,12 @@ function abrirModalPago(){
     // Validar que el carrito no esté vacío
     if(carrito.length === 0){
         alert("Tu carrito está vacío. Agrega productos antes de realizar el pago.");
+        return;
+    }
+    const direccion = document.getElementById("direccionEntrega").value.trim();
+    if(!direccion){
+        document.getElementById("direccionEntrega").focus();
+        alert("Ingresa una dirección de entrega para continuar.");
         return;
     }
     
