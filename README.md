@@ -23,3 +23,16 @@ The seed parser reads the existing `categoria_*.html` pages and `data/productos.
 `GET /api/health`, `/api/products`, `/api/products/:id`, `/api/offers`, `/api/about`; customer auth at `/api/auth/register`, `/api/auth/login`, `/api/auth/logout`, and `/api/auth/me`; admin-only product/offer/content management, `/api/users`, `/api/orders`, `/api/orders/:id/status`, `/api/dashboard`, and `/api/catalog/import`. Orders can be submitted by guests or authenticated customers. Admin endpoints require a Bearer JWT.
 
 `npm test` runs API health and catalog-import smoke tests; `npm run build` builds the Vite frontend.
+
+
+## Engineering Standards & Team (UAC - SIS021 2026-II)
+
+- **Methodology:** Adapted Scrum with Git Flow (`main`, `develop`, `feature/*`) and CI verification.
+- **Applied Standards:** ISO/IEC/IEEE 29148 (Requirements), ISO/IEC 25010 (Software Quality), OWASP Top 10 (JWT Bearer Auth & validation), and Peruvian Law N.° 29733 (Data Privacy).
+- **SDG Alignment:** SDG 8 (Decent Work and Economic Growth — digital transformation for local MYPE in Cusco).
+
+### Development Team
+- **Inquillay Atayupanqui, Daniela Nicol** — Scrum Master / Full Stack
+- **Segovia Baca, Giorgia Luane** — QA, Technical Documentation & Frontend
+- **Huillca Riquelme, Suzzet Sharmely** — Systems Analysis & Backend
+- **Cansaya Herrera, Ivan** — Database Architecture & Testing
